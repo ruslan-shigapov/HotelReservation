@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		E4AEED922B2B7418004D3A55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED912B2B7418004D3A55 /* AppDelegate.swift */; };
 		E4AEED942B2B7418004D3A55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */; };
-		E4AEED962B2B7418004D3A55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED952B2B7418004D3A55 /* ViewController.swift */; };
+		E4AEED962B2B7418004D3A55 /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED952B2B7418004D3A55 /* HotelViewController.swift */; };
 		E4AEED9B2B2B7419004D3A55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AEED9A2B2B7419004D3A55 /* Assets.xcassets */; };
-		E4AEED9E2B2B7419004D3A55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AEED9C2B2B7419004D3A55 /* LaunchScreen.storyboard */; };
 		E4AEEDA62B2B7716004D3A55 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEEDA52B2B7716004D3A55 /* BaseCoordinator.swift */; };
 		E4AEEDA82B2B774C004D3A55 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEEDA72B2B774C004D3A55 /* AppCoordinator.swift */; };
 		E4AEEDAA2B2B7829004D3A55 /* HotelScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEEDA92B2B7829004D3A55 /* HotelScreenCoordinator.swift */; };
@@ -21,9 +20,8 @@
 		E4AEED8E2B2B7418004D3A55 /* HotelReservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotelReservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4AEED912B2B7418004D3A55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E4AEED952B2B7418004D3A55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E4AEED952B2B7418004D3A55 /* HotelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelViewController.swift; sourceTree = "<group>"; };
 		E4AEED9A2B2B7419004D3A55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E4AEED9D2B2B7419004D3A55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4AEED9F2B2B7419004D3A55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4AEEDA52B2B7716004D3A55 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		E4AEEDA72B2B774C004D3A55 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -60,17 +58,48 @@
 		E4AEED902B2B7418004D3A55 /* HotelReservation */ = {
 			isa = PBXGroup;
 			children = (
-				E4AEED912B2B7418004D3A55 /* AppDelegate.swift */,
-				E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */,
-				E4AEEDA52B2B7716004D3A55 /* BaseCoordinator.swift */,
-				E4AEEDA72B2B774C004D3A55 /* AppCoordinator.swift */,
-				E4AEEDA92B2B7829004D3A55 /* HotelScreenCoordinator.swift */,
-				E4AEED952B2B7418004D3A55 /* ViewController.swift */,
-				E4AEED9A2B2B7419004D3A55 /* Assets.xcassets */,
-				E4AEED9C2B2B7419004D3A55 /* LaunchScreen.storyboard */,
-				E4AEED9F2B2B7419004D3A55 /* Info.plist */,
+				E4AEEDAD2B2B7DCC004D3A55 /* App */,
+				E4AEEDAE2B2B7DD9004D3A55 /* HotelScreen */,
+				E4AEEDAF2B2B7E01004D3A55 /* Coordinators */,
+				E4AEEDB02B2B7E14004D3A55 /* Resources */,
 			);
 			path = HotelReservation;
+			sourceTree = "<group>";
+		};
+		E4AEEDAD2B2B7DCC004D3A55 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E4AEED912B2B7418004D3A55 /* AppDelegate.swift */,
+				E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E4AEEDAE2B2B7DD9004D3A55 /* HotelScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E4AEED952B2B7418004D3A55 /* HotelViewController.swift */,
+				E4AEEDA92B2B7829004D3A55 /* HotelScreenCoordinator.swift */,
+			);
+			path = HotelScreen;
+			sourceTree = "<group>";
+		};
+		E4AEEDAF2B2B7E01004D3A55 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E4AEEDA52B2B7716004D3A55 /* BaseCoordinator.swift */,
+				E4AEEDA72B2B774C004D3A55 /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		E4AEEDB02B2B7E14004D3A55 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E4AEED9A2B2B7419004D3A55 /* Assets.xcassets */,
+				E4AEED9F2B2B7419004D3A55 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +160,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4AEED9E2B2B7419004D3A55 /* LaunchScreen.storyboard in Resources */,
 				E4AEED9B2B2B7419004D3A55 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,7 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4AEED962B2B7418004D3A55 /* ViewController.swift in Sources */,
+				E4AEED962B2B7418004D3A55 /* HotelViewController.swift in Sources */,
 				E4AEED922B2B7418004D3A55 /* AppDelegate.swift in Sources */,
 				E4AEEDA82B2B774C004D3A55 /* AppCoordinator.swift in Sources */,
 				E4AEEDAA2B2B7829004D3A55 /* HotelScreenCoordinator.swift in Sources */,
@@ -153,17 +181,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E4AEED9C2B2B7419004D3A55 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E4AEED9D2B2B7419004D3A55 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E4AEEDA02B2B7419004D3A55 /* Debug */ = {
@@ -294,9 +311,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X7QDNJU74Z;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HotelReservation/Info.plist;
+				INFOPLIST_FILE = HotelReservation/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -325,9 +341,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X7QDNJU74Z;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HotelReservation/Info.plist;
+				INFOPLIST_FILE = HotelReservation/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

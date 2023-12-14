@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HotelViewController.swift
 //  HotelReservation
 //
 //  Created by Ruslan Shigapov on 14.12.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class HotelViewController: UIViewController {
     
     weak var coordinator: HotelScreenCoordinator?
 
@@ -16,4 +16,3 @@ class ViewController: UIViewController {
         view.backgroundColor = .cyan
     }
 }
-
