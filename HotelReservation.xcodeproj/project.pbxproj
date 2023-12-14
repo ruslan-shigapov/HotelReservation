@@ -14,6 +14,7 @@
 		E4AEEDA62B2B7716004D3A55 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEEDA52B2B7716004D3A55 /* BaseCoordinator.swift */; };
 		E4AEEDA82B2B774C004D3A55 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEEDA72B2B774C004D3A55 /* AppCoordinator.swift */; };
 		E4AEEDAA2B2B7829004D3A55 /* HotelScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEEDA92B2B7829004D3A55 /* HotelScreenCoordinator.swift */; };
+		E4AEEDB22B2B8058004D3A55 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEEDB12B2B8058004D3A55 /* Hotel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E4AEEDA52B2B7716004D3A55 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		E4AEEDA72B2B774C004D3A55 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E4AEEDA92B2B7829004D3A55 /* HotelScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelScreenCoordinator.swift; sourceTree = "<group>"; };
+		E4AEEDB12B2B8058004D3A55 /* Hotel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				E4AEEDAD2B2B7DCC004D3A55 /* App */,
+				E4AEEDB32B2B8081004D3A55 /* Models */,
 				E4AEEDAE2B2B7DD9004D3A55 /* HotelScreen */,
 				E4AEEDAF2B2B7E01004D3A55 /* Coordinators */,
 				E4AEEDB02B2B7E14004D3A55 /* Resources */,
@@ -100,6 +103,14 @@
 				E4AEED9F2B2B7419004D3A55 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E4AEEDB32B2B8081004D3A55 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E4AEEDB12B2B8058004D3A55 /* Hotel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 				E4AEEDAA2B2B7829004D3A55 /* HotelScreenCoordinator.swift in Sources */,
 				E4AEED942B2B7418004D3A55 /* SceneDelegate.swift in Sources */,
 				E4AEEDA62B2B7716004D3A55 /* BaseCoordinator.swift in Sources */,
+				E4AEEDB22B2B8058004D3A55 /* Hotel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
