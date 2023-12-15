@@ -10,7 +10,22 @@ import UIKit
 final class AppCoordinator: BaseCoordinator {
     
     private var window: UIWindow
-    private var navigationController = UINavigationController()
+    private var navigationController: UINavigationController = {
+        let navigationController = UINavigationController()
+        
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = .systemBackground
+        navigationBarAppearance.shadowColor = .clear
+        navigationBarAppearance.titleTextAttributes = [
+            .font: Constants.Fonts.navigationBar
+        ]
+        
+        let navigationBar = navigationController.navigationBar
+        navigationBar.standardAppearance = navigationBarAppearance
+        navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        
+        return navigationController
+    }()
     
     init(window: UIWindow) {
         self.window = window
