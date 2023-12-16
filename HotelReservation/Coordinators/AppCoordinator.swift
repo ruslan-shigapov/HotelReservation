@@ -17,7 +17,7 @@ final class AppCoordinator: BaseCoordinator {
         navigationBarAppearance.backgroundColor = .systemBackground
         navigationBarAppearance.shadowColor = .clear
         navigationBarAppearance.titleTextAttributes = [
-            .font: Constants.Fonts.navigationBar
+            .font: Constants.Fonts.sf18Medium
         ]
         
         let navigationBar = navigationController.navigationBar
