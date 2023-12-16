@@ -131,7 +131,7 @@ extension HotelViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         CGSize(
             width: view.bounds.width,
-            height: 200
+            height: 430
         )
     }
 }

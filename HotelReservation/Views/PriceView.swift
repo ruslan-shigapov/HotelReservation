@@ -24,10 +24,10 @@ final class PriceView: UIView {
         return label
     }()
 
-    init(priceText: String, descriptionText: String) {
+    init(price: String, description: String) {
         super.init(frame: .zero)
-        priceLabel.text = priceText
-        descriptionLabel.text = descriptionText
+        priceLabel.text = price
+        descriptionLabel.text = description
         setupUI()
     }
     

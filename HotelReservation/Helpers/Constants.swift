@@ -9,20 +9,28 @@ import UIKit
 
 enum Constants {
     enum Fonts {
+        static var sf14Medium: UIFont {
+            UIFont(name: "SFProDisplay-Medium", size: 14)!
+        }
+        
+        static var sf16Medium: UIFont {
+            UIFont(name: "SFProDisplay-Medium", size: 16)!
+        }
+        
         static var sf18Medium: UIFont {
             UIFont(name: "SFProDisplay-Medium", size: 18)!
         }
         
-        static var sf30Semibold: UIFont {
-            UIFont(name: "SFProDisplay-Semibold", size: 30)!
+        static var sf22Medium: UIFont {
+            UIFont(name: "SFProDisplay-Medium", size: 22)!
         }
         
         static var sf16Regular: UIFont {
             UIFont(name: "SFProDisplay-Regular", size: 16)!
         }
         
-        static var sf16Medium: UIFont {
-            UIFont(name: "SFProDisplay-Medium", size: 16)!
+        static var sf30Semibold: UIFont {
+            UIFont(name: "SFProDisplay-Semibold", size: 30)!
         }
     }
     
