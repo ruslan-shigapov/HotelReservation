@@ -9,13 +9,16 @@ import UIKit
 
 final class CellTitleLabel: UILabel {
 
-    init(title: String) {
-        super.init(frame: .zero)
-        text = title
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         font = Constants.Fonts.sf22Medium
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with title: String) {
+        text = title
     }
 }

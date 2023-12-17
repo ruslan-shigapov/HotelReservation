@@ -1,5 +1,5 @@
 //
-//  MainHotelDataCell.swift
+//  MainHotelCell.swift
 //  HotelReservation
 //
 //  Created by Ruslan Shigapov on 15.12.2023.
@@ -7,23 +7,32 @@
 
 import UIKit
 
-class MainHotelDataCell: UICollectionViewCell {
+final class MainHotelCell: UICollectionViewCell {
     
-    private lazy var imageSlider = ImageSlider(pages: [])
-    private lazy var ratingView = RatingView()
-    private lazy var cellTitleLabel = CellTitleLabel(
-        title: "Steigenberger Makadi"
-    )
-    private lazy var addressButton = AddressButton(
-        title: "Madinat Makadi, Safaga Road, Makadi Bay, Египет"
-    )
-    private lazy var priceView = PriceView(
-        price: "от 134 673 \u{20BD}",
-        description: "за тур с перелётом"
-    )
-        
+    // MARK: Views
+    private let imageSlider = ImageSlider()
+    private let ratingView = RatingView()
+    private let cellTitleLabel = CellTitleLabel()
+    private let addressButton = AddressButton()
+    private let priceView = PriceView()
+    
+    // MARK: View Model
+    var viewModel: MainHotelCellViewModelProtocol! {
+        didSet {
+            imageSlider.configure(with: viewModel.imageViews)
+            ratingView.configure(with: viewModel.rating)
+            cellTitleLabel.configure(with: viewModel.hotelName)
+            addressButton.configure(with: viewModel.address)
+            priceView.configure(
+                with: viewModel.price,
+                and: viewModel.priceDescription
+            )
+        }
+    }
+    
+    // MARK: Initialization
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: .zero)
         setupUI()
     }
     
@@ -31,6 +40,7 @@ class MainHotelDataCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Setup
     private func setupUI() {
         backgroundColor = .systemBackground
         addSubviews()
@@ -50,8 +60,12 @@ class MainHotelDataCell: UICollectionViewCell {
     private func prepareForAutoLayout(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
     }
+}
+
+// MARK: - Layout
+private extension MainHotelCell {
     
-    private func setConstraints() {
+    func setConstraints() {
         NSLayoutConstraint.activate([
             imageSlider.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             imageSlider.leadingAnchor.constraint(
@@ -79,6 +93,10 @@ class MainHotelDataCell: UICollectionViewCell {
             cellTitleLabel.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16
+            ),
+            cellTitleLabel.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -16
             ),
             
             addressButton.topAnchor.constraint(

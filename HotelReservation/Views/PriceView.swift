@@ -8,7 +8,7 @@
 import UIKit
 
 final class PriceView: UIView {
-
+    
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,11 +23,9 @@ final class PriceView: UIView {
         label.textColor = Constants.Colors.customGray
         return label
     }()
-
-    init(price: String, description: String) {
-        super.init(frame: .zero)
-        priceLabel.text = price
-        descriptionLabel.text = description
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
     }
     
@@ -40,6 +38,15 @@ final class PriceView: UIView {
         addSubview(descriptionLabel)
         setConstraints()
     }
+    
+    func configure(with price: String, and description: String) {
+        priceLabel.text = price
+        descriptionLabel.text = description
+    }
+}
+ 
+// MARK: - Layout
+extension PriceView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([

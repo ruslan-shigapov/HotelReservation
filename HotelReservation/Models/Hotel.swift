@@ -20,3 +20,28 @@ struct HotelInfo: Decodable {
     let description: String
     let peculiarities: [String]
 }
+
+extension Hotel {
+    
+    static let emptyModel = Hotel(
+        name: "",
+        adress: "",
+        minimal_price: 0,
+        price_for_it: "",
+        rating: 0,
+        rating_name: "",
+        image_urls: [],
+        about_the_hotel: HotelInfo(description: "", peculiarities: [])
+    )
+    
+    static let defaultModel = Hotel(
+        name: "Данные не загрузились",
+        adress: "Перезапустите приложение",
+        minimal_price: 0,
+        price_for_it: "",
+        rating: 0,
+        rating_name: "",
+        image_urls: [],
+        about_the_hotel: HotelInfo(description: "", peculiarities: [])
+    )
+}

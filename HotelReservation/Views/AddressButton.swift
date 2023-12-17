@@ -9,9 +9,8 @@ import UIKit
 
 final class AddressButton: UIButton {
 
-    init(title: String) {
-        super.init(frame: .zero)
-        setTitle(title, for: .normal)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
     }
     
@@ -22,5 +21,9 @@ final class AddressButton: UIButton {
     private func setupUI() {
         setTitleColor(Constants.Colors.customBlue, for: .normal)
         titleLabel?.font = Constants.Fonts.sf14Medium
+    }
+    
+    func configure(with title: String) {
+        setTitle(title, for: .normal)
     }
 }

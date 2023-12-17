@@ -6,20 +6,27 @@
 //
 
 import UIKit
+import Combine
 
 final class HotelViewController: UIViewController {
     
-    private lazy var verticalCollectionView = VerticalCollectionView()
-    private lazy var dividerView = DividerView()
-    private lazy var confirmButton = ConfirmButton(title: "К выбору номера")
+    private let verticalCollectionView = VerticalCollectionView()
+    private let dividerView = DividerView()
+    private let confirmButton = ConfirmButton(title: "К выбору номера")
     
+    private let viewModel = HotelViewModel()
+    private var storage: Set<AnyCancellable> = []
     weak var coordinator: HotelScreenCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        viewModel = HotelViewModel()
+
         registerCells()
-        setupUI()
+        
         setDelegates()
+        setupUI()
+        binding()
 //        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
 //            layout.estimatedItemSize = CGSize(width: collectionView.bounds.width, height: 300)
 //            layout.itemSize = UICollectionViewFlowLayout.automaticSize
@@ -29,7 +36,7 @@ final class HotelViewController: UIViewController {
     
     private func registerCells() {
         verticalCollectionView.register(
-            MainHotelDataCell.self,
+            MainHotelCell.self,
             forCellWithReuseIdentifier: "MainHotelDataCell"
         )
     }
@@ -56,11 +63,46 @@ final class HotelViewController: UIViewController {
         verticalCollectionView.dataSource = self
         verticalCollectionView.delegate = self
     }
+    
+    private func binding() {
+        viewModel.$hotelData
+//            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.verticalCollectionView.reloadData()
+            }
+            .store(in: &storage)
+    }
 }
 
-private extension HotelViewController {
+// MARK: - Collection View Data Source
+extension HotelViewController: UICollectionViewDataSource {
     
-    func setConstraints() {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        1
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "MainHotelDataCell",
+            for: indexPath
+        ) as? MainHotelCell else {
+            return UICollectionViewCell()
+        }
+        cell.viewModel = viewModel.getMainHotelCellViewModel()
+        return cell
+    }
+}
+
+// MARK: - Layout
+extension HotelViewController {
+    
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             verticalCollectionView.topAnchor.constraint(
                 equalTo: view.topAnchor,
@@ -101,27 +143,8 @@ private extension HotelViewController {
     }
 }
 
-extension HotelViewController: UICollectionViewDataSource {
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
-        1
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "MainHotelDataCell",
-            for: indexPath
-        ) as? MainHotelDataCell
-        return cell ?? UICollectionViewCell()
-    }
-}
 
+// MARK: - Temporary 
 extension HotelViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(

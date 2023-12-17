@@ -18,12 +18,11 @@ final class RatingView: UIView {
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "5 Превосходно"
         label.font = Constants.Fonts.sf16Medium
         label.textColor = Constants.Colors.gold
         return label
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -41,7 +40,15 @@ final class RatingView: UIView {
         setConstraints()
     }
     
-    private func setConstraints() {
+    func configure(with rating: String) {
+        ratingLabel.text = rating
+    }
+}
+
+// MARK: - Layout
+private extension RatingView {
+    
+    func setConstraints() {
         NSLayoutConstraint.activate([
             starImageView.heightAnchor.constraint(equalToConstant: 15),
             starImageView.widthAnchor.constraint(equalToConstant: 15),
