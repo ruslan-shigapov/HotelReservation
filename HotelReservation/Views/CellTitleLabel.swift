@@ -11,11 +11,16 @@ final class CellTitleLabel: UILabel {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        font = Constants.Fonts.sf22Medium
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        numberOfLines = 0
+        font = Constants.Fonts.sf22Medium
     }
     
     func configure(with title: String) {

@@ -8,24 +8,40 @@
 import Foundation
 import Combine
 
-protocol HotelViewModelProtocol {
-    func getMainHotelCellViewModel() -> MainHotelCellViewModelProtocol
+enum HotelCell: String, CaseIterable {
+    case main
+    case info
 }
 
-final class HotelViewModel: HotelViewModelProtocol {
+final class HotelViewModel {
     
     private var subscription: AnyCancellable? = nil
     
-    @Published var hotelData: Hotel = Hotel.emptyModel
+    var mainCellIdentifier = HotelCell.main.rawValue
+    var infoCellIdentifier = HotelCell.info.rawValue
+        
+    @Published var hotelData = Hotel.defaultModel
     
     init() {
         subscription = NetworkManager.shared.hotelDataPublisher()
-            .replaceError(with: Hotel.defaultModel)
+            .replaceError(with: Hotel.emptyModel)
             .receive(on: DispatchQueue.main)
             .assign(to: \.hotelData, on: self)
     }
     
-    func getMainHotelCellViewModel() -> MainHotelCellViewModelProtocol {
+    func getNumberOfItems() -> Int {
+        HotelCell.allCases.count
+    }
+    
+    func getItem(at indexPath: IndexPath) -> HotelCell {
+        HotelCell.allCases[indexPath.item]
+    }
+    
+    func getMainHotelCellViewModel() -> MainHotelCellViewModel {
         MainHotelCellViewModel(hotelData: hotelData)
+    }
+    
+    func getHotelInfoCellViewModel() -> HotelInfoCellViewModel {
+        HotelInfoCellViewModel(hotelData: hotelData.about_the_hotel)
     }
 }

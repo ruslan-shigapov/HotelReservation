@@ -8,6 +8,7 @@
 import UIKit
 
 enum Constants {
+    // MARK: Fonts
     enum Fonts {
         static var sf14Medium: UIFont {
             UIFont(name: "SFProDisplay-Medium", size: 14)!
@@ -34,6 +35,7 @@ enum Constants {
         }
     }
     
+    // MARK: Colors
     enum Colors {
         static var customBlue: UIColor {
             UIColor(red: 13/255, green: 114/255, blue: 255/255, alpha: 1)
@@ -52,9 +54,19 @@ enum Constants {
         }
     }
     
+    // MARK: Images
     enum Images {
         static var star: UIImage {
             UIImage(named: "Star")!
         }
     }
+    
+    // MARK: Text
+    enum Text {
+        static var mainTitle = "Отель"
+        
+        enum ButtonTitle {
+            static var toRoomChoice = "К выбору номера"
+        }
+    }    
 }

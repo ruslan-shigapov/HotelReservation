@@ -6,24 +6,15 @@
 //
 
 import UIKit
+import Combine
 
-protocol MainHotelCellViewModelProtocol {
-    var imageViews: [UIImageView] { get }
-    var rating: String { get }
-    var hotelName: String { get }
-    var address: String { get }
-    var price: String { get }
-    var priceDescription: String { get }
-    init(hotelData: Hotel)
-}
-
-final class MainHotelCellViewModel: MainHotelCellViewModelProtocol {
+final class MainHotelCellViewModel {
+    
+    private var subscription: AnyCancellable? = nil
     
     private let hotelData: Hotel
     
-    var imageViews: [UIImageView] {
-        []
-    }
+    @Published var imageViews: [UIImageView] = []
     
     var rating: String {
         "\(hotelData.rating) \(hotelData.rating_name)"
@@ -37,15 +28,26 @@ final class MainHotelCellViewModel: MainHotelCellViewModelProtocol {
         hotelData.adress
     }
     
-    var price: String {
-        "от \(hotelData.minimal_price) \u{20BD}"
+    var minimalPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        let formattedPrice = formatter.string(
+            from: NSNumber(value: hotelData.minimal_price)
+        )!
+        return "от \(formattedPrice) \u{20BD}"
     }
     
     var priceDescription: String {
-        hotelData.price_for_it.lowercased()
+        hotelData.price_for_it.lowercased() 
     }
     
     required init(hotelData: Hotel) {
         self.hotelData = hotelData
+        
+        subscription = NetworkManager.shared.imageViewsPublisher(
+            by: hotelData.image_urls
+        )
+        .replaceError(with: [])
+        .assign(to: \.imageViews, on: self)
     }
 }

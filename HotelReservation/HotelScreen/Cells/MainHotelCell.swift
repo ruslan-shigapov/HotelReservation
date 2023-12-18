@@ -6,31 +6,35 @@
 //
 
 import UIKit
+import Combine
 
 final class MainHotelCell: UICollectionViewCell {
     
-    // MARK: Views
-    private let imageSlider = ImageSlider()
+    private let imageSlider = ImageSliderView()
     private let ratingView = RatingView()
     private let cellTitleLabel = CellTitleLabel()
     private let addressButton = AddressButton()
     private let priceView = PriceView()
     
-    // MARK: View Model
-    var viewModel: MainHotelCellViewModelProtocol! {
+    private var storage: Set<AnyCancellable> = []
+    
+    var viewModel: MainHotelCellViewModel! {
         didSet {
-            imageSlider.configure(with: viewModel.imageViews)
             ratingView.configure(with: viewModel.rating)
             cellTitleLabel.configure(with: viewModel.hotelName)
             addressButton.configure(with: viewModel.address)
             priceView.configure(
-                with: viewModel.price,
+                with: viewModel.minimalPrice,
                 and: viewModel.priceDescription
             )
+            viewModel.$imageViews
+                .sink { [weak self] in
+                    self?.imageSlider.configure(with: $0)
+                }
+                .store(in: &storage)
         }
     }
     
-    // MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUI()
@@ -40,7 +44,6 @@ final class MainHotelCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Setup
     private func setupUI() {
         backgroundColor = .systemBackground
         addSubviews()
@@ -67,6 +70,7 @@ private extension MainHotelCell {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
+            imageSlider.heightAnchor.constraint(equalToConstant: 257),
             imageSlider.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             imageSlider.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
