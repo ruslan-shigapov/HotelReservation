@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 final class ImageSliderView: UIView {
     
@@ -141,14 +140,14 @@ extension ImageSliderView {
                 equalTo: pageControlView.leadingAnchor,
                 constant: -20
             ),
-            pageControl.trailingAnchor.constraint(
-                equalTo: pageControlView.trailingAnchor,
-                constant: 20
-            ),
             pageControl.bottomAnchor.constraint(
                 equalTo: pageControlView.bottomAnchor,
                 constant: 2
             ),
+            pageControl.trailingAnchor.constraint(
+                equalTo: pageControlView.trailingAnchor,
+                constant: 20
+            )
         ])
     }
 }

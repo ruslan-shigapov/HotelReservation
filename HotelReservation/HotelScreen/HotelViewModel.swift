@@ -8,17 +8,9 @@
 import Foundation
 import Combine
 
-enum HotelCell: String, CaseIterable {
-    case main
-    case info
-}
-
 final class HotelViewModel {
     
     private var subscription: AnyCancellable? = nil
-    
-    var mainCellIdentifier = HotelCell.main.rawValue
-    var infoCellIdentifier = HotelCell.info.rawValue
         
     @Published var hotelData = Hotel.defaultModel
     

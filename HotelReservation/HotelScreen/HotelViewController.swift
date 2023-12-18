@@ -8,6 +8,11 @@
 import UIKit
 import Combine
 
+enum HotelCell: String, CaseIterable {
+    case main
+    case info
+}
+
 final class HotelViewController: UIViewController {
     
     private let verticalCollectionView = VerticalCollectionView()
@@ -33,11 +38,11 @@ final class HotelViewController: UIViewController {
     private func registerCells() {
         verticalCollectionView.register(
             MainHotelCell.self,
-            forCellWithReuseIdentifier: viewModel.mainCellIdentifier
+            forCellWithReuseIdentifier: HotelCell.main.rawValue
         )
         verticalCollectionView.register(
             HotelInfoCell.self,
-            forCellWithReuseIdentifier: viewModel.infoCellIdentifier
+            forCellWithReuseIdentifier: HotelCell.info.rawValue
         )
     }
     
@@ -92,6 +97,9 @@ extension HotelViewController: UICollectionViewDataSource {
             withReuseIdentifier: item.rawValue,
             for: indexPath
         )
+        // TODO: create parent cell
+        cell.backgroundColor = .systemBackground
+        cell.layer.cornerRadius = 12
         switch item {
         case .main:
             let mainCell = cell as? MainHotelCell

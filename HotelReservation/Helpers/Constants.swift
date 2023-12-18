@@ -45,12 +45,16 @@ enum Constants {
             UIColor(red: 255/255, green: 168/255, blue: 0/255, alpha: 1)
         }
         
-        static var lightGold: UIColor {
+        static var backgroundGold: UIColor {
             UIColor(red: 255/255, green: 199/255, blue: 0/255, alpha: 0.2)
         }
         
         static var customGray: UIColor {
             UIColor(red: 130/255, green: 135/255, blue: 150/255, alpha: 1)
+        }
+        
+        static var backgroundGray: UIColor {
+            UIColor(red: 251/255, green: 251/255, blue: 252/255, alpha: 1)
         }
     }
     
@@ -64,6 +68,10 @@ enum Constants {
     // MARK: Text
     enum Text {
         static var mainTitle = "Отель"
+        
+        enum CellTitle {
+            static var aboutHotel = "Об отеле"
+        }
         
         enum ButtonTitle {
             static var toRoomChoice = "К выбору номера"

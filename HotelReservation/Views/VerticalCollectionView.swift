@@ -9,9 +9,12 @@ import UIKit
 
 final class VerticalCollectionView: UICollectionView {
     
-    init() {
+    override init(
+        frame: CGRect,
+        collectionViewLayout layout: UICollectionViewLayout
+    ) {
         super.init(
-            frame: .zero,
+            frame: frame,
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         setupUI()

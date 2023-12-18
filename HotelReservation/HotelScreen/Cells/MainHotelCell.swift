@@ -45,10 +45,8 @@ final class MainHotelCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        backgroundColor = .systemBackground
         addSubviews()
         subviews.forEach(prepareForAutoLayout)
-        layer.cornerRadius = 12
         setConstraints()
     }
     

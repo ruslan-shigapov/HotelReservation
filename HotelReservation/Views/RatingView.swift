@@ -33,7 +33,7 @@ final class RatingView: UIView {
     }
     
     private func setupUI() {
-        backgroundColor = Constants.Colors.lightGold
+        backgroundColor = Constants.Colors.backgroundGold
         addSubview(starImageView)
         addSubview(ratingLabel)
         layer.cornerRadius = 5

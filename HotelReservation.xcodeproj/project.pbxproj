@@ -16,6 +16,10 @@
 		E43AA7812B2D0A6900E81F54 /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43AA7802B2D0A6900E81F54 /* ImageSliderView.swift */; };
 		E43FD7332B2D941800CA85ED /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FD7322B2D941800CA85ED /* ConfirmButton.swift */; };
 		E43FD7372B2DA06F00CA85ED /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FD7362B2DA06F00CA85ED /* DividerView.swift */; };
+		E447015B2B304F2800E66A49 /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447015A2B304F2800E66A49 /* InfoButton.swift */; };
+		E44701602B3058AC00E66A49 /* PeculiaritiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447015F2B3058AC00E66A49 /* PeculiaritiesView.swift */; };
+		E44701622B30641300E66A49 /* CommonPeculiarityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44701612B30641300E66A49 /* CommonPeculiarityCell.swift */; };
+		E44701642B3067C600E66A49 /* PeculiaritiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44701632B3067C600E66A49 /* PeculiaritiesViewModel.swift */; };
 		E460E9712B2DF586005A3AAF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E460E9702B2DF586005A3AAF /* NetworkManager.swift */; };
 		E47208062B2DB7BE00AF60A8 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47208052B2DB7BE00AF60A8 /* PriceView.swift */; };
 		E47208082B2DC15B00AF60A8 /* CellTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47208072B2DC15B00AF60A8 /* CellTitleLabel.swift */; };
@@ -45,6 +49,10 @@
 		E43AA7802B2D0A6900E81F54 /* ImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderView.swift; sourceTree = "<group>"; };
 		E43FD7322B2D941800CA85ED /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		E43FD7362B2DA06F00CA85ED /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
+		E447015A2B304F2800E66A49 /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
+		E447015F2B3058AC00E66A49 /* PeculiaritiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeculiaritiesView.swift; sourceTree = "<group>"; };
+		E44701612B30641300E66A49 /* CommonPeculiarityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPeculiarityCell.swift; sourceTree = "<group>"; };
+		E44701632B3067C600E66A49 /* PeculiaritiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeculiaritiesViewModel.swift; sourceTree = "<group>"; };
 		E460E9702B2DF586005A3AAF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E47208052B2DB7BE00AF60A8 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		E47208072B2DC15B00AF60A8 /* CellTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTitleLabel.swift; sourceTree = "<group>"; };
@@ -92,12 +100,12 @@
 			children = (
 				E4BED4CD2B2DAE4800F3445C /* VerticalCollectionView.swift */,
 				E43FD7362B2DA06F00CA85ED /* DividerView.swift */,
-				E43FD7322B2D941800CA85ED /* ConfirmButton.swift */,
 				E43AA7802B2D0A6900E81F54 /* ImageSliderView.swift */,
 				E43AA77E2B2CFC5B00E81F54 /* RatingView.swift */,
-				E47208072B2DC15B00AF60A8 /* CellTitleLabel.swift */,
-				E47208092B2DC41600AF60A8 /* AddressButton.swift */,
 				E47208052B2DB7BE00AF60A8 /* PriceView.swift */,
+				E44701662B308BDA00E66A49 /* PeculiaritiesBundle */,
+				E447015D2B30540A00E66A49 /* Buttons */,
+				E447015E2B30541A00E66A49 /* Labels */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -119,6 +127,42 @@
 				E48670322B2F640700A45A47 /* HotelInfoCellViewModel.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		E447015D2B30540A00E66A49 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E43FD7322B2D941800CA85ED /* ConfirmButton.swift */,
+				E47208092B2DC41600AF60A8 /* AddressButton.swift */,
+				E447015A2B304F2800E66A49 /* InfoButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		E447015E2B30541A00E66A49 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				E47208072B2DC15B00AF60A8 /* CellTitleLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		E44701652B3087D500E66A49 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E44701612B30641300E66A49 /* CommonPeculiarityCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E44701662B308BDA00E66A49 /* PeculiaritiesBundle */ = {
+			isa = PBXGroup;
+			children = (
+				E447015F2B3058AC00E66A49 /* PeculiaritiesView.swift */,
+				E44701632B3067C600E66A49 /* PeculiaritiesViewModel.swift */,
+				E44701652B3087D500E66A49 /* Cells */,
+			);
+			path = PeculiaritiesBundle;
 			sourceTree = "<group>";
 		};
 		E460E96F2B2DF561005A3AAF /* Services */ = {
@@ -172,10 +216,10 @@
 		E4AEEDAE2B2B7DD9004D3A55 /* HotelScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E43FD7352B2DA02700CA85ED /* Cells */,
 				E4AEED952B2B7418004D3A55 /* HotelViewController.swift */,
 				E4AEEDB52B2B820F004D3A55 /* HotelViewModel.swift */,
 				E4AEEDA92B2B7829004D3A55 /* HotelScreenCoordinator.swift */,
+				E43FD7352B2DA02700CA85ED /* Cells */,
 			);
 			path = HotelScreen;
 			sourceTree = "<group>";
@@ -287,13 +331,17 @@
 				E4AEED962B2B7418004D3A55 /* HotelViewController.swift in Sources */,
 				E43FD7372B2DA06F00CA85ED /* DividerView.swift in Sources */,
 				E48670332B2F640700A45A47 /* HotelInfoCellViewModel.swift in Sources */,
+				E44701602B3058AC00E66A49 /* PeculiaritiesView.swift in Sources */,
+				E44701642B3067C600E66A49 /* PeculiaritiesViewModel.swift in Sources */,
 				E43AA7812B2D0A6900E81F54 /* ImageSliderView.swift in Sources */,
 				E40BFF852B2C848D00FE2171 /* Constants.swift in Sources */,
 				E4AEED922B2B7418004D3A55 /* AppDelegate.swift in Sources */,
+				E447015B2B304F2800E66A49 /* InfoButton.swift in Sources */,
 				E47208082B2DC15B00AF60A8 /* CellTitleLabel.swift in Sources */,
 				E4AEEDA82B2B774C004D3A55 /* AppCoordinator.swift in Sources */,
 				E48670312B2F54DE00A45A47 /* HotelInfoCell.swift in Sources */,
 				E47208062B2DB7BE00AF60A8 /* PriceView.swift in Sources */,
+				E44701622B30641300E66A49 /* CommonPeculiarityCell.swift in Sources */,
 				E4AEEDAA2B2B7829004D3A55 /* HotelScreenCoordinator.swift in Sources */,
 				E4AEED942B2B7418004D3A55 /* SceneDelegate.swift in Sources */,
 				E4AEEDA62B2B7716004D3A55 /* BaseCoordinator.swift in Sources */,
