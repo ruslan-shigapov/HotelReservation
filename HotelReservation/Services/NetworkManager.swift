@@ -9,7 +9,8 @@ import UIKit
 import Combine
 
 private enum Link: String {
-    case url = "https://run.mocky.io/v3/d144777c-a67f-4e35-867a-cacc3b827473"
+    case hotel = "https://run.mocky.io/v3/d144777c-a67f-4e35-867a-cacc3b827473"
+    case rooms = "https://run.mocky.io/v3/8b532701-709e-4194-a41c-1a903af00195"
 }
 
 enum NetworkError: Error {
@@ -49,18 +50,20 @@ final class NetworkManager {
     }
     
     func hotelDataPublisher() -> AnyPublisher<Hotel, NetworkError> {
-        URLSession.shared.dataTaskPublisher(for: URL(string: Link.url.rawValue)!)
-            .mapError { NetworkError.sessionError($0) }
-            .tryMap {
-                guard !$0.data.isEmpty else { throw NetworkError.noData }
-                return $0.data
-            }
-            .decode(type: Hotel.self, decoder: decoder)
-            .map { $0 }
-            .mapError { _ in
-                NetworkError.decodingError
-            }
-            .eraseToAnyPublisher()
+        URLSession.shared.dataTaskPublisher(
+            for: URL(string: Link.hotel.rawValue)!
+        )
+        .mapError { NetworkError.sessionError($0) }
+        .tryMap {
+            guard !$0.data.isEmpty else { throw NetworkError.noData }
+            return $0.data
+        }
+        .decode(type: Hotel.self, decoder: decoder)
+        .map { $0 }
+        .mapError { _ in
+            NetworkError.decodingError
+        }
+        .eraseToAnyPublisher()
     }
     
     func imageViewsPublisher(
@@ -74,5 +77,22 @@ final class NetworkManager {
             .compactMap { UIImageView(image: $0) }
             .collect()
             .eraseToAnyPublisher()
+    }
+    
+    func roomsDataPublisher() -> AnyPublisher<[Room], NetworkError> {
+        URLSession.shared.dataTaskPublisher(
+            for: URL(string: Link.rooms.rawValue)!
+        )
+        .mapError { NetworkError.sessionError($0) }
+        .tryMap {
+            guard !$0.data.isEmpty else { throw NetworkError.noData }
+            return $0.data
+        }
+        .decode(type: RoomList.self, decoder: decoder)
+        .map { $0.rooms }
+        .mapError { _ in
+            NetworkError.decodingError
+        }
+        .eraseToAnyPublisher()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  RoomScreenCoordinator.swift
+//  RoomsScreenCoordinator.swift
 //  HotelReservation
 //
 //  Created by Ruslan Shigapov on 19.12.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RoomScreenCoordinator: BaseCoordinator {
+final class RoomsScreenCoordinator: BaseCoordinator {
     
     private var navigationController: UINavigationController
     
@@ -16,9 +16,9 @@ final class RoomScreenCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        let roomVC = RoomViewController()
-        roomVC.title = navigationController.title
-        roomVC.coordinator = self
-        navigationController.pushViewController(roomVC, animated: true)
+        let roomsVC = RoomsViewController()
+        roomsVC.title = navigationController.title
+        roomsVC.coordinator = self
+        navigationController.pushViewController(roomsVC, animated: true)
     }
 }

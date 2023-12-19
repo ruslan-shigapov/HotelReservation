@@ -95,6 +95,7 @@ enum Constants {
         
         enum ButtonTitle {
             static var toRoomChoice = "К выбору номера"
+            static var chooseRoom = "Выбрать номер"
         }
     }    
 }

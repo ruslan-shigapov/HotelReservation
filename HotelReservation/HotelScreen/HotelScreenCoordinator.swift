@@ -21,12 +21,12 @@ final class HotelScreenCoordinator: BaseCoordinator {
         navigationController.pushViewController(hotelVC, animated: true)
     }
     
-    func runRoomCoordinator(with title: String) {
+    func runRoomsCoordinator(with title: String) {
         navigationController.title = title
-        let roomScreenCoordinator = RoomScreenCoordinator(
+        let roomsScreenCoordinator = RoomsScreenCoordinator(
             navigationController: navigationController
         )
-        add(coordinator: roomScreenCoordinator)
-        roomScreenCoordinator.start()
+        add(coordinator: roomsScreenCoordinator)
+        roomsScreenCoordinator.start()
     }
 }

@@ -87,7 +87,7 @@ final class HotelViewController: UIViewController {
     }
     
     @objc private func confirmButtonWasPressed() {
-        coordinator?.runRoomCoordinator(with: viewModel.hotelData.name)
+        coordinator?.runRoomsCoordinator(with: viewModel.hotelData.name)
     }
 }
 

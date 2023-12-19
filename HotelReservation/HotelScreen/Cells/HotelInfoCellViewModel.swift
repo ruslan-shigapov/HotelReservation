@@ -11,10 +11,6 @@ final class HotelInfoCellViewModel {
     
     private let hotelData: HotelInfo
     
-    var peculiarities: [String] {
-        hotelData.peculiarities
-    }
-    
     var description: String {
         hotelData.description
     }
