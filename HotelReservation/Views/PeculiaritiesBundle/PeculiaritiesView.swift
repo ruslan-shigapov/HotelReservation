@@ -80,17 +80,22 @@ extension PeculiaritiesView: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         let cell: UICollectionViewCell?
-        switch viewModel.relation {
-        case .toHotel:
+        if viewModel.relation == .toHotel ||
+           indexPath.row + 1 < viewModel.getNumberOfItems() {
             let commonCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: PeculiarityCellType.common.rawValue,
                 for: indexPath
             ) as? CommonPeculiarityCell
-            commonCell?.configure(with: viewModel.peculiarities[indexPath.item])
+            commonCell?.configure(
+                with: viewModel.peculiarities[indexPath.item]
+            )
             cell = commonCell
-        case .toRoom:
-            // TODO: implement of display DetailsCell
-            cell = UICollectionViewCell()
+        } else {
+            let detailsCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: PeculiarityCellType.details.rawValue,
+                for: indexPath
+            ) as? DetailsPeculiarityCell
+            cell = detailsCell
         }
         return cell ?? UICollectionViewCell()
     }

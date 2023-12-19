@@ -110,8 +110,6 @@ extension HotelViewController: UICollectionViewDataSource {
             withReuseIdentifier: cellType.rawValue,
             for: indexPath
         )
-        cell.backgroundColor = .systemBackground
-        cell.layer.cornerRadius = 12
         switch cellType {
         case .main:
             let mainCell = cell as? MainHotelCell

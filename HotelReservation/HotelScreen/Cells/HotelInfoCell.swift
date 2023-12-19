@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HotelInfoCell: UICollectionViewCell {
+final class HotelInfoCell: CustomCollectionViewCell {
     
     private lazy var cellTitleLabel: UILabel = {
         let label = CellTitleLabel()

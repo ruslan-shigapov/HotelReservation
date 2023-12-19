@@ -46,7 +46,7 @@ final class RoomCellViewModel {
     func getPeculiaritiesViewModel() -> PeculiaritiesViewModel {
         PeculiaritiesViewModel(
             peculiarities: roomData.peculiarities,
-            relation: .toHotel // TEMPORARY
+            relation: .toRoom
         )
     }
 }

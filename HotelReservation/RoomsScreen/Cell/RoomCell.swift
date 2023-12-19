@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class RoomCell: UICollectionViewCell {
+final class RoomCell: CustomCollectionViewCell {
     
     private let imageSlider = ImageSliderView()
     private let cellTitleLabel = CellTitleLabel()

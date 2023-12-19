@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class MainHotelCell: UICollectionViewCell {
+final class MainHotelCell: CustomCollectionViewCell {
     
     private let imageSlider = ImageSliderView()
     private let ratingView = RatingView()
