@@ -18,7 +18,7 @@ final class MainHotelCell: UICollectionViewCell {
     
     private var storage: Set<AnyCancellable> = []
     
-    var viewModel: MainHotelCellViewModel! {
+    weak var viewModel: MainHotelCellViewModel! {
         didSet {
             ratingView.configure(with: viewModel.rating)
             cellTitleLabel.configure(with: viewModel.hotelName)

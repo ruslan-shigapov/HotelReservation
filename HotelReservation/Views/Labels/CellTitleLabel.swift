@@ -19,8 +19,8 @@ final class CellTitleLabel: UILabel {
     }
     
     private func setupUI() {
-        numberOfLines = 0
         font = Constants.Fonts.sf22Medium
+        numberOfLines = 0
     }
     
     func configure(with title: String) {

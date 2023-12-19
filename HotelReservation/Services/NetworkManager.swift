@@ -21,6 +21,12 @@ enum NetworkError: Error {
 
 final class NetworkManager {
     
+    private let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+    
     static let shared = NetworkManager()
     
     private init() {}
@@ -49,7 +55,7 @@ final class NetworkManager {
                 guard !$0.data.isEmpty else { throw NetworkError.noData }
                 return $0.data
             }
-            .decode(type: Hotel.self, decoder: JSONDecoder())
+            .decode(type: Hotel.self, decoder: decoder)
             .map { $0 }
             .mapError { _ in
                 NetworkError.decodingError

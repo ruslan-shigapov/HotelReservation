@@ -12,7 +12,8 @@ final class HotelViewModel {
     
     private var subscription: AnyCancellable? = nil
         
-    @Published var hotelData = Hotel.defaultModel
+    @Published 
+    var hotelData = Hotel.loadingModel
     
     init() {
         subscription = NetworkManager.shared.hotelDataPublisher()
@@ -22,11 +23,11 @@ final class HotelViewModel {
     }
     
     func getNumberOfItems() -> Int {
-        HotelCell.allCases.count
+        HotelCellType.allCases.count
     }
     
-    func getItem(at indexPath: IndexPath) -> HotelCell {
-        HotelCell.allCases[indexPath.item]
+    func getCellType(at indexPath: IndexPath) -> HotelCellType {
+        HotelCellType.allCases[indexPath.item]
     }
     
     func getMainHotelCellViewModel() -> MainHotelCellViewModel {
@@ -34,6 +35,6 @@ final class HotelViewModel {
     }
     
     func getHotelInfoCellViewModel() -> HotelInfoCellViewModel {
-        HotelInfoCellViewModel(hotelData: hotelData.about_the_hotel)
+        HotelInfoCellViewModel(hotelData: hotelData.aboutTheHotel)
     }
 }

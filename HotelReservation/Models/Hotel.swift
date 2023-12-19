@@ -8,12 +8,12 @@
 struct Hotel: Decodable {
     let name: String
     let adress: String
-    let minimal_price: Int
-    let price_for_it: String
+    let minimalPrice: Int
+    let priceForIt: String
     let rating: Int
-    let rating_name: String
-    let image_urls: [String]
-    let about_the_hotel: HotelInfo
+    let ratingName: String
+    let imageUrls: [String]
+    let aboutTheHotel: HotelInfo
 }
 
 struct HotelInfo: Decodable {
@@ -23,25 +23,24 @@ struct HotelInfo: Decodable {
 
 extension Hotel {
     
-    static let defaultModel = Hotel(
+    static let loadingModel = Hotel(
         name: "Загрузка",
         adress: "Подождите",
-        minimal_price: 0,
-        price_for_it: "",
+        minimalPrice: 0,
+        priceForIt: "",
         rating: 0,
-        rating_name: "",
-        image_urls: [],
-        about_the_hotel: HotelInfo(description: "", peculiarities: [])
+        ratingName: "",
+        imageUrls: [],
+        aboutTheHotel: HotelInfo(description: "", peculiarities: [])
     )
-    
     static let emptyModel = Hotel(
         name: "Данные не загрузились",
         adress: "Перезапустите приложение",
-        minimal_price: 0,
-        price_for_it: "",
+        minimalPrice: 0,
+        priceForIt: "",
         rating: 0,
-        rating_name: "",
-        image_urls: [],
-        about_the_hotel: HotelInfo(description: "", peculiarities: [])
+        ratingName: "",
+        imageUrls: [],
+        aboutTheHotel: HotelInfo(description: "", peculiarities: [])
     )
 }

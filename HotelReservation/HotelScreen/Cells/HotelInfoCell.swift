@@ -9,7 +9,12 @@ import UIKit
 
 final class HotelInfoCell: UICollectionViewCell {
     
-    private let cellTitleLabel = CellTitleLabel()
+    private lazy var cellTitleLabel: UILabel = {
+        let label = CellTitleLabel()
+        label.configure(with: Constants.Text.CellTitle.aboutHotel)
+        return label
+    }()
+    
     private let peculiaritiesView = PeculiaritiesView()
     
     private lazy var descriptionLabel: UILabel = {
@@ -19,12 +24,36 @@ final class HotelInfoCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var buttonTableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
+    private let conveniencesButton = InfoButton(
+        name: Constants.Text.conveniences,
+        icon: Constants.Images.conveniences
+    )
+    private let whatIsIncludedButton = InfoButton(
+        name: Constants.Text.whatIsIncluded,
+        icon: Constants.Images.whatIsIncluded
+    )
+    private let whatIsNotIncludedButton = InfoButton(
+        name: Constants.Text.whatIsNotIncluded,
+        icon: Constants.Images.whatIsNotIncluded
+    )
+    
+    private let firstDividerView = DividerView()
+    private let secondDividerView = DividerView()
+    
+    private lazy var buttonsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Constants.Colors.backgroundGray
+        view.addSubview(conveniencesButton)
+        view.addSubview(whatIsIncludedButton)
+        view.addSubview(whatIsNotIncludedButton)
+        view.addSubview(firstDividerView)
+        view.addSubview(secondDividerView)
+        view.subviews.forEach(prepareForAutoLayout)
+        view.layer.cornerRadius = 15
+        return view
     }()
     
-    var viewModel: HotelInfoCellViewModel! {
+    weak var viewModel: HotelInfoCellViewModel! {
         didSet {
             peculiaritiesView.viewModel = viewModel.getPeculiaritiesViewModel()
             descriptionLabel.text = viewModel.description
@@ -39,9 +68,8 @@ final class HotelInfoCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupUI() {
-        cellTitleLabel.configure(with: Constants.Text.CellTitle.aboutHotel)
         addSubviews()
         subviews.forEach(prepareForAutoLayout)
         setConstraints()
@@ -51,9 +79,9 @@ final class HotelInfoCell: UICollectionViewCell {
         addSubview(cellTitleLabel)
         addSubview(peculiaritiesView)
         addSubview(descriptionLabel)
-        addSubview(buttonTableView)
+        addSubview(buttonsView)
     }
-    
+
     private func prepareForAutoLayout(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -103,21 +131,89 @@ private extension HotelInfoCell {
                 constant: -16
             ),
             
-            buttonTableView.heightAnchor.constraint(equalToConstant: 184),
-            buttonTableView.topAnchor.constraint(
+            buttonsView.topAnchor.constraint(
                 equalTo: descriptionLabel.bottomAnchor,
                 constant: 16
             ),
-            buttonTableView.leadingAnchor.constraint(
+            buttonsView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16
             ),
-            buttonTableView.bottomAnchor.constraint(
+            buttonsView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -16),
-            buttonTableView.trailingAnchor.constraint(
+            buttonsView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -16
+            ),
+            
+            conveniencesButton.topAnchor.constraint(
+                equalTo: buttonsView.topAnchor,
+                constant: 15
+            ),
+            conveniencesButton.leadingAnchor.constraint(
+                equalTo: buttonsView.leadingAnchor,
+                constant: 15
+            ),
+            conveniencesButton.trailingAnchor.constraint(
+                equalTo: buttonsView.trailingAnchor,
+                constant: -15
+            ),
+            
+            firstDividerView.topAnchor.constraint(
+                equalTo: conveniencesButton.bottomAnchor,
+                constant: 10
+            ),
+            firstDividerView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: 69
+            ),
+            firstDividerView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -31
+            ),
+            
+            whatIsIncludedButton.topAnchor.constraint(
+                equalTo: firstDividerView.bottomAnchor,
+                constant: 10
+            ),
+            whatIsIncludedButton.leadingAnchor.constraint(
+                equalTo: buttonsView.leadingAnchor,
+                constant: 15
+            ),
+            whatIsIncludedButton.trailingAnchor.constraint(
+                equalTo: buttonsView.trailingAnchor,
+                constant: -15
+            ),
+            
+            secondDividerView.topAnchor.constraint(
+                equalTo: whatIsIncludedButton.bottomAnchor,
+                constant: 10
+            ),
+            secondDividerView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: 69
+            ),
+            secondDividerView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -31
+            ),
+            
+            whatIsNotIncludedButton.topAnchor.constraint(
+                equalTo: secondDividerView.bottomAnchor,
+                constant: 10
+            ),
+            whatIsNotIncludedButton.leadingAnchor.constraint(
+                equalTo: buttonsView.leadingAnchor,
+                constant: 15
+            ),
+            whatIsNotIncludedButton.trailingAnchor.constraint(
+                equalTo: buttonsView.trailingAnchor,
+                constant: -15
+            ),
+            whatIsNotIncludedButton.bottomAnchor.constraint(
+                equalTo: buttonsView.bottomAnchor,
+                constant: -15
             )
         ])
     }

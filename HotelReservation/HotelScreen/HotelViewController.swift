@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-enum HotelCell: String, CaseIterable {
+enum HotelCellType: String, CaseIterable {
     case main
     case info
 }
@@ -17,9 +17,18 @@ final class HotelViewController: UIViewController {
     
     private let verticalCollectionView = VerticalCollectionView()
     private let dividerView = DividerView()
-    private let confirmButton = ConfirmButton(
-        title: Constants.Text.ButtonTitle.toRoomChoice
-    )
+    
+    private lazy var confirmButton: UIButton = {
+        let button = ConfirmButton(
+            title: Constants.Text.ButtonTitle.toRoomChoice
+        )
+        button.addTarget(
+            self,
+            action: #selector(confirmButtonWasPressed),
+            for: .touchUpInside
+        )
+        return button
+    }()
     
     private let viewModel = HotelViewModel()
     
@@ -29,21 +38,10 @@ final class HotelViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerCells()
         setDelegates()
+        registerCells()
         setupUI()
         bind()
-    }
-    
-    private func registerCells() {
-        verticalCollectionView.register(
-            MainHotelCell.self,
-            forCellWithReuseIdentifier: HotelCell.main.rawValue
-        )
-        verticalCollectionView.register(
-            HotelInfoCell.self,
-            forCellWithReuseIdentifier: HotelCell.info.rawValue
-        )
     }
     
     private func setDelegates() {
@@ -51,8 +49,19 @@ final class HotelViewController: UIViewController {
         verticalCollectionView.delegate = self
     }
     
+    private func registerCells() {
+        verticalCollectionView.register(
+            MainHotelCell.self,
+            forCellWithReuseIdentifier: HotelCellType.main.rawValue
+        )
+        verticalCollectionView.register(
+            HotelInfoCell.self,
+            forCellWithReuseIdentifier: HotelCellType.info.rawValue
+        )
+    }
+    
     private func setupUI() {
-        title = Constants.Text.mainTitle
+        title = Constants.Text.hotel
         view.backgroundColor = .systemBackground
         addSubviews()
         view.subviews.forEach(prepareForAutoLayout)
@@ -76,6 +85,10 @@ final class HotelViewController: UIViewController {
             }
             .store(in: &storage)
     }
+    
+    @objc private func confirmButtonWasPressed() {
+        coordinator?.runRoomCoordinator(with: viewModel.hotelData.name)
+    }
 }
 
 // MARK: - Collection View Data Source
@@ -92,15 +105,14 @@ extension HotelViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let item = viewModel.getItem(at: indexPath)
+        let cellType = viewModel.getCellType(at: indexPath)
         var cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: item.rawValue,
+            withReuseIdentifier: cellType.rawValue,
             for: indexPath
         )
-        // TODO: create parent cell
         cell.backgroundColor = .systemBackground
         cell.layer.cornerRadius = 12
-        switch item {
+        switch cellType {
         case .main:
             let mainCell = cell as? MainHotelCell
             mainCell?.viewModel = viewModel.getMainHotelCellViewModel()
@@ -111,6 +123,21 @@ extension HotelViewController: UICollectionViewDataSource {
             cell = infoCell ?? UICollectionViewCell()
         }
         return cell
+    }
+}
+
+// MARK: - Collection View Delegate
+extension HotelViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        CGSize(
+            width: view.bounds.width,
+            height: 480
+        )
     }
 }
 
@@ -129,6 +156,7 @@ extension HotelViewController {
             verticalCollectionView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor
             ),
+            
             dividerView.topAnchor.constraint(
                 equalTo: verticalCollectionView.bottomAnchor
             ),
@@ -138,6 +166,7 @@ extension HotelViewController {
             dividerView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor
             ),
+            
             confirmButton.topAnchor.constraint(
                 equalTo: dividerView.bottomAnchor,
                 constant: 12
@@ -146,30 +175,14 @@ extension HotelViewController {
                 equalTo: view.leadingAnchor,
                 constant: 16
             ),
-            confirmButton.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -16
-            ),
             confirmButton.bottomAnchor.constraint(
                 equalTo: view.bottomAnchor,
                 constant: -28
+            ),
+            confirmButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -16
             )
         ])
-    }
-}
-
-
-// MARK: - Temporary 
-extension HotelViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(
-        _ collectionView: UICollectionView, 
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        CGSize(
-            width: view.bounds.width,
-            height: 480
-        )
     }
 }

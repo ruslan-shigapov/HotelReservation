@@ -49,7 +49,7 @@ final class PriceView: UIView {
 extension PriceView {
     
     private func setConstraints() {
-        NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate([            
             priceLabel.topAnchor.constraint(equalTo: topAnchor),
             priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor),

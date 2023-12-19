@@ -50,13 +50,13 @@ private extension RatingView {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
+            starImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             starImageView.heightAnchor.constraint(equalToConstant: 15),
             starImageView.widthAnchor.constraint(equalToConstant: 15),
             starImageView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 10
             ),
-            starImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
 
             ratingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             ratingLabel.leadingAnchor.constraint(

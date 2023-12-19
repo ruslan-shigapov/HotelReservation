@@ -30,8 +30,8 @@ final class ImageSliderView: UIView {
     private lazy var pageControlView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
-        view.layer.cornerRadius = 5
         view.addSubview(pageControl)
+        view.layer.cornerRadius = 5
         return view
     }()
     
@@ -104,10 +104,10 @@ final class ImageSliderView: UIView {
 extension ImageSliderView: UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let currenPage = round(
+        let currentPage = round(
             scrollView.contentOffset.x / scrollView.frame.size.width
         )
-        pageControl.currentPage = Int(currenPage)
+        pageControl.currentPage = Int(currentPage)
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-private enum PeculiarityCell: String, CaseIterable {
+private enum PeculiarityCellType: String {
     case common
     case details
 }
@@ -39,8 +39,8 @@ final class PeculiaritiesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        registerCells()
         horizontalCollectionView.dataSource = self
+        registerCells()
         setupUI()
     }
     
@@ -51,7 +51,11 @@ final class PeculiaritiesView: UIView {
     private func registerCells() {
         horizontalCollectionView.register(
             CommonPeculiarityCell.self,
-            forCellWithReuseIdentifier: PeculiarityCell.common.rawValue
+            forCellWithReuseIdentifier: PeculiarityCellType.common.rawValue
+        )
+        horizontalCollectionView.register(
+            DetailsPeculiarityCell.self,
+            forCellWithReuseIdentifier: PeculiarityCellType.details.rawValue
         )
     }
     
@@ -75,11 +79,19 @@ extension PeculiaritiesView: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: PeculiarityCell.common.rawValue,
-            for: indexPath
-        ) as? CommonPeculiarityCell
-        cell?.configure(with: viewModel.peculiarities[indexPath.item])
+        let cell: UICollectionViewCell?
+        switch viewModel.relation {
+        case .toHotel:
+            let commonCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: PeculiarityCellType.common.rawValue,
+                for: indexPath
+            ) as? CommonPeculiarityCell
+            commonCell?.configure(with: viewModel.peculiarities[indexPath.item])
+            cell = commonCell
+        case .toRoom:
+            // TODO: implement of display DetailsCell
+            cell = UICollectionViewCell()
+        }
         return cell ?? UICollectionViewCell()
     }
 }

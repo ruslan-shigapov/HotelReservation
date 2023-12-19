@@ -5,7 +5,7 @@
 //  Created by Ruslan Shigapov on 17.12.2023.
 //
 
-import Foundation
+import UIKit
 
 final class HotelInfoCellViewModel {
     
@@ -24,6 +24,9 @@ final class HotelInfoCellViewModel {
     }
     
     func getPeculiaritiesViewModel() -> PeculiaritiesViewModel {
-        PeculiaritiesViewModel(peculiarities: hotelData.peculiarities)
+        PeculiaritiesViewModel(
+            peculiarities: hotelData.peculiarities,
+            relation: .toHotel
+        )
     }
 }

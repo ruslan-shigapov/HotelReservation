@@ -63,11 +63,31 @@ enum Constants {
         static var star: UIImage {
             UIImage(named: "Star")!
         }
+        
+        static var arrowNext: UIImage {
+            UIImage(named: "ArrowNext")!
+        }
+        
+        static var conveniences: UIImage {
+            UIImage(named: "EmojiHappy")!
+        }
+        
+        static var whatIsIncluded: UIImage {
+            UIImage(named: "TickSquare")!
+        }
+        
+        static var whatIsNotIncluded: UIImage {
+            UIImage(named: "CloseSquare")!
+        }
     }
     
     // MARK: Text
     enum Text {
-        static var mainTitle = "Отель"
+        static var hotel = "Отель"
+        static var conveniences = "Удобства"
+        static var whatIsIncluded = "Что включено"
+        static var whatIsNotIncluded = "Что не включено"
+        static var mostNecessary = "Самое необходимое"
         
         enum CellTitle {
             static var aboutHotel = "Об отеле"
