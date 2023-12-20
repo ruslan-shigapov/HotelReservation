@@ -14,10 +14,10 @@ private enum Link: String {
 }
 
 enum NetworkError: Error {
+    case invalidUrl
     case sessionError(Error)
     case noData
     case decodingError
-    case imagesNotLoaded
 }
 
 final class NetworkManager {
@@ -35,35 +35,18 @@ final class NetworkManager {
     private func imagePublisher(
         by url: String
     ) -> AnyPublisher<UIImage, NetworkError> {
-        URLSession.shared.dataTaskPublisher(for: URL(string: url)!)
-            .mapError { NetworkError.sessionError($0) }
+        guard let url = URL(string: url) else {
+            return Fail(error: NetworkError.invalidUrl).eraseToAnyPublisher()
+        }
+        return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap {
                 guard let image = UIImage(data: $0.data) else {
                     throw NetworkError.noData
                 }
                 return image
             }
-            .mapError { _ in
-                NetworkError.imagesNotLoaded
-            }
+            .catch { _ in Empty().eraseToAnyPublisher() }
             .eraseToAnyPublisher()
-    }
-    
-    func hotelDataPublisher() -> AnyPublisher<Hotel, NetworkError> {
-        URLSession.shared.dataTaskPublisher(
-            for: URL(string: Link.hotel.rawValue)!
-        )
-        .mapError { NetworkError.sessionError($0) }
-        .tryMap {
-            guard !$0.data.isEmpty else { throw NetworkError.noData }
-            return $0.data
-        }
-        .decode(type: Hotel.self, decoder: decoder)
-        .map { $0 }
-        .mapError { _ in
-            NetworkError.decodingError
-        }
-        .eraseToAnyPublisher()
     }
     
     func imageViewsPublisher(
@@ -79,6 +62,21 @@ final class NetworkManager {
             .eraseToAnyPublisher()
     }
     
+    func hotelDataPublisher() -> AnyPublisher<Hotel, NetworkError> {
+        URLSession.shared.dataTaskPublisher(
+            for: URL(string: Link.hotel.rawValue)!
+        )
+        .mapError { NetworkError.sessionError($0) }
+        .tryMap {
+            guard !$0.data.isEmpty else { throw NetworkError.noData }
+            return $0.data
+        }
+        .decode(type: Hotel.self, decoder: decoder)
+        .map { $0 }
+        .mapError { _ in NetworkError.decodingError }
+        .eraseToAnyPublisher()
+    }
+    
     func roomsDataPublisher() -> AnyPublisher<[Room], NetworkError> {
         URLSession.shared.dataTaskPublisher(
             for: URL(string: Link.rooms.rawValue)!
@@ -90,9 +88,7 @@ final class NetworkManager {
         }
         .decode(type: RoomList.self, decoder: decoder)
         .map { $0.rooms }
-        .mapError { _ in
-            NetworkError.decodingError
-        }
+        .mapError { _ in NetworkError.decodingError }
         .eraseToAnyPublisher()
     }
 }
