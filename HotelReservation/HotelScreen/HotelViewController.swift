@@ -38,15 +38,10 @@ final class HotelViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegates()
+        verticalCollectionView.dataSource = self
         registerCells()
         setupUI()
         bind()
-    }
-    
-    private func setDelegates() {
-        verticalCollectionView.dataSource = self
-        verticalCollectionView.delegate = self
     }
     
     private func registerCells() {
@@ -109,6 +104,9 @@ extension HotelViewController: UICollectionViewDataSource {
             withReuseIdentifier: cellType.rawValue,
             for: indexPath
         )
+        cell.contentView.widthAnchor.constraint(
+            equalToConstant: UIScreen.main.bounds.width
+        ).isActive = true
         switch cellType {
         case .main:
             let mainCell = cell as? MainHotelCell
@@ -120,21 +118,6 @@ extension HotelViewController: UICollectionViewDataSource {
             cell = infoCell ?? UICollectionViewCell()
         }
         return cell
-    }
-}
-
-// MARK: - Collection View Delegate
-extension HotelViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        CGSize(
-            width: view.bounds.width,
-            height: 480
-        )
     }
 }
 

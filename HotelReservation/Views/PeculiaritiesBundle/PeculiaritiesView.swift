@@ -137,6 +137,7 @@ extension PeculiaritiesView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            horizontalCollectionView.heightAnchor.constraint(equalToConstant: 200),
             horizontalCollectionView.topAnchor.constraint(equalTo: topAnchor),
             horizontalCollectionView.leadingAnchor.constraint(
                 equalTo: leadingAnchor

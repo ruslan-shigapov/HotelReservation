@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 enum BookingCellType: String, CaseIterable {
     case about
@@ -17,6 +18,8 @@ final class BookingViewController: UIViewController {
     
     private let viewModel = BookingViewModel()
     
+    private var storage: Set<AnyCancellable> = []
+    
     weak var coordinator: BookingScreenCoordinator?
 
     override func viewDidLoad() {
@@ -24,8 +27,10 @@ final class BookingViewController: UIViewController {
         verticalCollectionView.dataSource = self
         registerCells()
         view.addSubview(verticalCollectionView)
+        
         verticalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         setConstraints()
+        bind()
     }
     
     private func registerCells() {
@@ -34,8 +39,17 @@ final class BookingViewController: UIViewController {
             forCellWithReuseIdentifier: BookingCellType.about.rawValue
         )
     }
+    
+    private func bind() {
+        viewModel.$bookingData
+            .sink { [weak self] _ in
+                self?.verticalCollectionView.reloadData()
+            }
+            .store(in: &storage)
+    }
 }
 
+// MARK: - Collection View Data Source
 extension BookingViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
@@ -52,6 +66,9 @@ extension BookingViewController: UICollectionViewDataSource {
             withReuseIdentifier: BookingCellType.about.rawValue,
             for: indexPath
         ) as? AboutHotelCell
+        cell?.contentView.widthAnchor.constraint(
+            equalToConstant: UIScreen.main.bounds.width
+        ).isActive = true
         cell?.viewModel = viewModel.getRoomCellViewModel()
         return cell ?? UICollectionViewCell()
     }

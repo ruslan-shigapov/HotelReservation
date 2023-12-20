@@ -24,15 +24,10 @@ final class RoomsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegates()
+        verticalCollectionView.dataSource = self
         registerCell()
         setupUI()
         bind()
-    }
-    
-    private func setDelegates() {
-        verticalCollectionView.dataSource = self
-        verticalCollectionView.delegate = self
     }
     
     private func registerCell() {
@@ -75,6 +70,9 @@ extension RoomsViewController: UICollectionViewDataSource {
             withReuseIdentifier: RoomCellType.common.rawValue,
             for: indexPath
         ) as? RoomCell
+        cell?.contentView.widthAnchor.constraint(
+            equalToConstant: UIScreen.main.bounds.width
+        ).isActive = true
         cell?.viewModel = viewModel.getRoomCellViewModel(at: indexPath)
         cell?.viewModel.confirmButtonTapPublisher
             .sink { [weak self] in
@@ -82,21 +80,6 @@ extension RoomsViewController: UICollectionViewDataSource {
             }
             .store(in: &storage)
         return cell ?? UICollectionViewCell()
-    }
-}
-
-// MARK: - Collection View Delegate
-extension RoomsViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        CGSize(
-            width: view.bounds.width,
-            height: 560
-        )
     }
 }
 

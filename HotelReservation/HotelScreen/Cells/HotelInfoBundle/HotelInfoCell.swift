@@ -71,15 +71,15 @@ final class HotelInfoCell: CustomCollectionViewCell {
 
     private func setupUI() {
         addSubviews()
-        subviews.forEach(prepareForAutoLayout)
+        contentView.subviews.forEach(prepareForAutoLayout)
         setConstraints()
     }
     
     private func addSubviews() {
-        addSubview(cellTitleLabel)
-        addSubview(peculiaritiesView)
-        addSubview(descriptionLabel)
-        addSubview(buttonsView)
+        contentView.addSubview(cellTitleLabel)
+        contentView.addSubview(peculiaritiesView)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(buttonsView)
     }
 
     private func prepareForAutoLayout(view: UIView) {
@@ -93,16 +93,12 @@ private extension HotelInfoCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             cellTitleLabel.topAnchor.constraint(
-                equalTo: topAnchor,
+                equalTo: contentView.topAnchor,
                 constant: 16
             ),
             cellTitleLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
-            ),
-            cellTitleLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -16
             ),
             
             peculiaritiesView.topAnchor.constraint(
@@ -110,24 +106,24 @@ private extension HotelInfoCell {
                 constant: 8
             ),
             peculiaritiesView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             peculiaritiesView.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16
             ),
             
             descriptionLabel.topAnchor.constraint(
-                equalTo: peculiaritiesView.bottomAnchor,
+                equalTo: peculiaritiesView.bottomAnchor, 
                 constant: 12
             ),
             descriptionLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             descriptionLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16
             ),
             
@@ -136,14 +132,14 @@ private extension HotelInfoCell {
                 constant: 16
             ),
             buttonsView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             buttonsView.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
+                equalTo: contentView.bottomAnchor,
                 constant: -16),
             buttonsView.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16
             ),
             

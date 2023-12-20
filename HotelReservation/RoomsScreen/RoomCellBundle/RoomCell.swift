@@ -56,16 +56,16 @@ final class RoomCell: CustomCollectionViewCell {
     
     private func setupUI() {
         addSubviews()
-        subviews.forEach(prepareForAutoLayout)
+        contentView.subviews.forEach(prepareForAutoLayout)
         setConstraints()
     }
     
     private func addSubviews() {
-        addSubview(imageSlider)
-        addSubview(cellTitleLabel)
-        addSubview(peculiaritiesView)
-        addSubview(priceView)
-        addSubview(confirmButton)
+        contentView.addSubview(imageSlider)
+        contentView.addSubview(cellTitleLabel)
+        contentView.addSubview(peculiaritiesView)
+        contentView.addSubview(priceView)
+        contentView.addSubview(confirmButton)
     }
     
     private func prepareForAutoLayout(view: UIView) {
@@ -83,13 +83,13 @@ private extension RoomCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             imageSlider.heightAnchor.constraint(equalToConstant: 257),
-            imageSlider.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            imageSlider.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             imageSlider.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             imageSlider.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16
             ),
             
@@ -98,22 +98,23 @@ private extension RoomCell {
                 constant: 8
             ),
             cellTitleLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             cellTitleLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16
             ),
             
             peculiaritiesView.topAnchor.constraint(
-                equalTo: cellTitleLabel.bottomAnchor),
+                equalTo: cellTitleLabel.bottomAnchor
+            ),
             peculiaritiesView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             peculiaritiesView.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16
             ),
             
@@ -122,7 +123,7 @@ private extension RoomCell {
                 constant: 16
             ),
             priceView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
 
@@ -131,17 +132,17 @@ private extension RoomCell {
                 constant: 16
             ),
             confirmButton.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
-            confirmButton.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -16
-            ),
             confirmButton.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
+                equalTo: contentView.bottomAnchor,
                 constant: -16
             ),
+            confirmButton.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -16
+            )
         ])
     }
 }

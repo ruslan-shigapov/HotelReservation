@@ -46,14 +46,14 @@ final class MainHotelCell: CustomCollectionViewCell {
     
     private func setupUI() {
         addSubviews()
-        subviews.forEach(prepareForAutoLayout)
+        contentView.subviews.forEach(prepareForAutoLayout)
         setConstraints()
     }
     
     private func addSubviews() {
-        addSubview(imageSlider)
-        addSubview(aboutHotelView)
-        addSubview(priceView)
+        contentView.addSubview(imageSlider)
+        contentView.addSubview(aboutHotelView)
+        contentView.addSubview(priceView)
     }
     
     private func prepareForAutoLayout(view: UIView) {
@@ -67,29 +67,36 @@ private extension MainHotelCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             imageSlider.heightAnchor.constraint(equalToConstant: 257),
-            imageSlider.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            imageSlider.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: 10
+            ),
             imageSlider.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             imageSlider.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -16
             ),
 
             aboutHotelView.topAnchor.constraint(
                 equalTo: imageSlider.bottomAnchor
             ),
-            aboutHotelView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            aboutHotelView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            aboutHotelView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor
+            ),
+            aboutHotelView.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor
+            ),
             
             priceView.topAnchor.constraint(equalTo: aboutHotelView.bottomAnchor),
             priceView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: 16
             ),
             priceView.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
+                equalTo: contentView.bottomAnchor,
                 constant: -16
             )
         ])

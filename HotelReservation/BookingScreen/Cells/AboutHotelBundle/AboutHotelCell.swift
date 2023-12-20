@@ -13,7 +13,11 @@ final class AboutHotelCell: CustomCollectionViewCell {
     
     weak var viewModel: AboutHotelCellViewModel! {
         didSet {
-            
+            aboutHotelView.configure(
+                withRating: viewModel.rating,
+                name: viewModel.hotelName,
+                address: viewModel.address
+            )
         }
     }
     
@@ -27,17 +31,25 @@ final class AboutHotelCell: CustomCollectionViewCell {
     }
     
     private func setupUI() {
-        addSubview(aboutHotelView)
+        contentView.addSubview(aboutHotelView)
         aboutHotelView.translatesAutoresizingMaskIntoConstraints = false
         setConstraints()
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            aboutHotelView.topAnchor.constraint(equalTo: topAnchor),
-            aboutHotelView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            aboutHotelView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            aboutHotelView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            aboutHotelView.topAnchor.constraint(
+                equalTo: contentView.topAnchor
+            ),
+            aboutHotelView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor
+            ),
+            aboutHotelView.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor
+            ),
+            aboutHotelView.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor
+            )
         ])
     }
 }
