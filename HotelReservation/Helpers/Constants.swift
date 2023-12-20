@@ -38,7 +38,7 @@ enum Constants {
         static var backgroundBlue: UIColor {
             UIColor(red: 13/255, green: 114/255, blue: 255/255, alpha: 0.1)
         }
-        static var gold: UIColor {
+        static var customGold: UIColor {
             UIColor(red: 255/255, green: 168/255, blue: 0/255, alpha: 1)
         }
         static var backgroundGold: UIColor {
@@ -68,6 +68,9 @@ enum Constants {
         }
         static var whatIsNotIncluded: UIImage {
             UIImage(named: "CloseSquare")!
+        }
+        static var blueArrowNext: UIImage {
+            UIImage(named: "BlueArrowNext")!
         }
     }
     

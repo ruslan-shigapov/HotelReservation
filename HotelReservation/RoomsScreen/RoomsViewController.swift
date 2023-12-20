@@ -90,7 +90,7 @@ extension RoomsViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         CGSize(
             width: view.bounds.width,
-            height: 550
+            height: 560
         )
     }
 }

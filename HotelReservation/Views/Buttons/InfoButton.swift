@@ -64,8 +64,6 @@ private extension InfoButton {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            iconImageView.heightAnchor.constraint(equalToConstant: 24),
-            iconImageView.widthAnchor.constraint(equalToConstant: 24),
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             
@@ -76,8 +74,6 @@ private extension InfoButton {
             ),
             labelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            arrowImageView.heightAnchor.constraint(equalToConstant: 24),
-            arrowImageView.widthAnchor.constraint(equalToConstant: 24),
             arrowImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             arrowImageView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])

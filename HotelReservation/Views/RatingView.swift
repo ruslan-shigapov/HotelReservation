@@ -19,7 +19,7 @@ final class RatingView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Constants.Fonts.sf16Medium
-        label.textColor = Constants.Colors.gold
+        label.textColor = Constants.Colors.customGold
         return label
     }()
     
@@ -51,8 +51,6 @@ private extension RatingView {
     func setConstraints() {
         NSLayoutConstraint.activate([
             starImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            starImageView.heightAnchor.constraint(equalToConstant: 15),
-            starImageView.widthAnchor.constraint(equalToConstant: 15),
             starImageView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 10

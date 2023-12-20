@@ -10,11 +10,19 @@ import UIKit
 final class DetailsPeculiarityCell: UICollectionViewCell {
     
     private lazy var detailsButton: UIButton = {
-        let button = UIButton()
+        let icon = Constants.Images.blueArrowNext
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = icon
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = 10
+        var container = AttributeContainer()
+        container.font = Constants.Fonts.sf16Medium
+        configuration.attributedTitle = AttributedString(
+            Constants.Text.roomDetails,
+            attributes: container
+        )
+        let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(Constants.Text.roomDetails, for: .normal)
-        button.setTitleColor(Constants.Colors.customBlue, for: .normal)
-        button.titleLabel?.font = Constants.Fonts.sf16Medium
         return button
     }()
     
@@ -33,23 +41,13 @@ final class DetailsPeculiarityCell: UICollectionViewCell {
         layer.cornerRadius = 5
         setConstraints()
     }
-}
-
-// MARK: - Layout
-private extension DetailsPeculiarityCell {
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             detailsButton.topAnchor.constraint(equalTo: topAnchor),
-            detailsButton.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 10
-            ),
+            detailsButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             detailsButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-            detailsButton.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -10
-            )
+            detailsButton.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }

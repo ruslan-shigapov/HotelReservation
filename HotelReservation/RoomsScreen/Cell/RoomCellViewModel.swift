@@ -36,11 +36,11 @@ final class RoomCellViewModel {
     
     required init(roomData: Room) {
         self.roomData = roomData
-        subscription = NetworkManager.shared.imageViewsPublisher(
-            by: roomData.imageUrls
-        )
-        .replaceError(with: [])
-        .assign(to: \.imageViews, on: self)
+//        subscription = NetworkManager.shared.imageViewsPublisher(
+//            by: roomData.imageUrls
+//        )
+//        .replaceError(with: [])
+//        .assign(to: \.imageViews, on: self)
     }
     
     func getPeculiaritiesViewModel() -> PeculiaritiesViewModel {
