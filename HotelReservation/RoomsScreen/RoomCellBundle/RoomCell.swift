@@ -55,7 +55,6 @@ final class RoomCell: CustomCollectionViewCell {
     }
     
     private func setupUI() {
-        backgroundColor = .systemBackground
         addSubviews()
         subviews.forEach(prepareForAutoLayout)
         setConstraints()
