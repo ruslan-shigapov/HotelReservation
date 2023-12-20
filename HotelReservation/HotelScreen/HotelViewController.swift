@@ -61,7 +61,6 @@ final class HotelViewController: UIViewController {
     }
     
     private func setupUI() {
-        title = Constants.Text.hotel
         view.backgroundColor = .systemBackground
         addSubviews()
         view.subviews.forEach(prepareForAutoLayout)

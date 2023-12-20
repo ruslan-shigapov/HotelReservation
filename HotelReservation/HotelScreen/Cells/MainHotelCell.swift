@@ -11,18 +11,18 @@ import Combine
 final class MainHotelCell: CustomCollectionViewCell {
     
     private let imageSlider = ImageSliderView()
-    private let ratingView = RatingView()
-    private let cellTitleLabel = CellTitleLabel()
-    private let addressButton = AddressButton()
+    private let aboutHotelView = AboutHotelView()
     private let priceView = PriceView()
     
     private var storage: Set<AnyCancellable> = []
     
     weak var viewModel: MainHotelCellViewModel! {
         didSet {
-            ratingView.configure(with: viewModel.rating)
-            cellTitleLabel.configure(with: viewModel.hotelName)
-            addressButton.configure(with: viewModel.address)
+            aboutHotelView.configure(
+                withRating: viewModel.rating,
+                name: viewModel.hotelName,
+                address: viewModel.address
+            )
             priceView.configure(
                 with: viewModel.minimalPrice,
                 and: viewModel.priceDescription
@@ -52,9 +52,7 @@ final class MainHotelCell: CustomCollectionViewCell {
     
     private func addSubviews() {
         addSubview(imageSlider)
-        addSubview(ratingView)
-        addSubview(cellTitleLabel)
-        addSubview(addressButton)
+        addSubview(aboutHotelView)
         addSubview(priceView)
     }
     
@@ -78,42 +76,14 @@ private extension MainHotelCell {
                 equalTo: trailingAnchor,
                 constant: -16
             ),
+
+            aboutHotelView.topAnchor.constraint(
+                equalTo: imageSlider.bottomAnchor
+            ),
+            aboutHotelView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            aboutHotelView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            ratingView.topAnchor.constraint(
-                equalTo: imageSlider.bottomAnchor,
-                constant: 16
-            ),
-            ratingView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 16
-            ),
-            
-            cellTitleLabel.topAnchor.constraint(
-                equalTo: ratingView.bottomAnchor,
-                constant: 8
-            ),
-            cellTitleLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 16
-            ),
-            cellTitleLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -16
-            ),
-            
-            addressButton.topAnchor.constraint(
-                equalTo: cellTitleLabel.bottomAnchor,
-                constant: 8
-            ),
-            addressButton.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 16
-            ),
-            
-            priceView.topAnchor.constraint(
-                equalTo: addressButton.bottomAnchor,
-                constant: 16
-            ),
+            priceView.topAnchor.constraint(equalTo: aboutHotelView.bottomAnchor),
             priceView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16

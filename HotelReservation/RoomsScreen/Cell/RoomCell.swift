@@ -29,7 +29,7 @@ final class RoomCell: CustomCollectionViewCell {
     
     private var storage: Set<AnyCancellable> = []
     
-    weak var viewModel: RoomCellViewModel! {
+    var viewModel: RoomCellViewModel! {
         didSet {
             cellTitleLabel.configure(with: viewModel.roomName)
             peculiaritiesView.viewModel = viewModel.getPeculiaritiesViewModel()
@@ -74,7 +74,7 @@ final class RoomCell: CustomCollectionViewCell {
     }
     
     @objc private func confirmButtonWasPressed() {
-        
+        viewModel?.confirmButtonTapPublisher.send()
     }
 }
 

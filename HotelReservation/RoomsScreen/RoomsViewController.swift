@@ -76,6 +76,11 @@ extension RoomsViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? RoomCell
         cell?.viewModel = viewModel.getRoomCellViewModel(at: indexPath)
+        cell?.viewModel.confirmButtonTapPublisher
+            .sink { [weak self] in
+                self?.coordinator?.runBookingCoordinator()
+            }
+            .store(in: &storage)
         return cell ?? UICollectionViewCell()
     }
 }

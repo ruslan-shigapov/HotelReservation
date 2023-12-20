@@ -21,4 +21,12 @@ final class RoomsScreenCoordinator: BaseCoordinator {
         roomsVC.coordinator = self
         navigationController.pushViewController(roomsVC, animated: true)
     }
+    
+    func runBookingCoordinator() {
+        let bookingScreenCoordinator = BookingScreenCoordinator(
+            navigationController: navigationController
+        )
+        add(coordinator: bookingScreenCoordinator)
+        bookingScreenCoordinator.start()
+    }
 }

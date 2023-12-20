@@ -10,6 +10,7 @@ import UIKit
 final class AppCoordinator: BaseCoordinator {
     
     private var window: UIWindow
+    
     private var navigationController: UINavigationController = {
         let navigationController = UINavigationController()
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -21,6 +22,11 @@ final class AppCoordinator: BaseCoordinator {
         let navigationBar = navigationController.navigationBar
         navigationBar.standardAppearance = navigationBarAppearance
         navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        navigationBar.tintColor = .label
+        let navigationItem = navigationController.navigationItem
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            customView: UIImageView(image: Constants.Images.arrowBack)
+        )
         return navigationController
     }()
     

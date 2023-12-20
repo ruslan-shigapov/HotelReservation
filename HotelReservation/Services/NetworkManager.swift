@@ -14,10 +14,10 @@ private enum Link: String {
 }
 
 enum NetworkError: Error {
-    case invalidUrl
     case sessionError(Error)
     case noData
     case decodingError
+    case imagesNotLoaded
 }
 
 final class NetworkManager {
@@ -31,36 +31,6 @@ final class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {}
-    
-    private func imagePublisher(
-        by url: String
-    ) -> AnyPublisher<UIImage, NetworkError> {
-        guard let url = URL(string: url) else {
-            return Fail(error: NetworkError.invalidUrl).eraseToAnyPublisher()
-        }
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap {
-                guard let image = UIImage(data: $0.data) else {
-                    throw NetworkError.noData
-                }
-                return image
-            }
-            .catch { _ in Empty().eraseToAnyPublisher() }
-            .eraseToAnyPublisher()
-    }
-    
-    func imageViewsPublisher(
-        by urls: [String]
-    ) -> AnyPublisher<[UIImageView], NetworkError> {
-        urls.publisher
-            .flatMap {
-                self.imagePublisher(by: $0)
-            }
-            .receive(on: DispatchQueue.main)
-            .compactMap { UIImageView(image: $0) }
-            .collect()
-            .eraseToAnyPublisher()
-    }
     
     func hotelDataPublisher() -> AnyPublisher<Hotel, NetworkError> {
         URLSession.shared.dataTaskPublisher(
@@ -90,5 +60,20 @@ final class NetworkManager {
         .map { $0.rooms }
         .mapError { _ in NetworkError.decodingError }
         .eraseToAnyPublisher()
+    }
+    
+    func imageViewsPublisher(
+        by urls: [String]
+    ) -> AnyPublisher<[UIImageView], NetworkError> {
+        urls.publisher
+            .flatMap {
+                URLSession.shared.dataTaskPublisher(for: URL(string: $0)!)
+                    .compactMap { UIImage(data: $0.data) }
+            }
+            .mapError { _ in NetworkError.imagesNotLoaded }
+            .receive(on: DispatchQueue.main)
+            .map { UIImageView(image: $0) }
+            .collect()
+            .eraseToAnyPublisher()
     }
 }

@@ -14,6 +14,8 @@ final class RoomCellViewModel {
     
     private var subscription: AnyCancellable? = nil
     
+    let confirmButtonTapPublisher = PassthroughSubject<Void, Never>()
+    
     @Published
     var imageViews: [UIImageView] = []
     

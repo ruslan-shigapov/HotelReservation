@@ -18,6 +18,7 @@ final class HotelScreenCoordinator: BaseCoordinator {
     override func start() {
         let hotelVC = HotelViewController()
         hotelVC.coordinator = self
+        hotelVC.title = Constants.Text.hotel
         navigationController.pushViewController(hotelVC, animated: true)
     }
     

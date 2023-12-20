@@ -72,6 +72,9 @@ enum Constants {
         static var blueArrowNext: UIImage {
             UIImage(named: "BlueArrowNext")!
         }
+        static var arrowBack: UIImage {
+            UIImage(named: "ArrowBack")!
+        }
     }
     
     // MARK: Text
@@ -82,6 +85,7 @@ enum Constants {
         static var whatIsNotIncluded = "Что не включено"
         static var mostNecessary = "Самое необходимое"
         static var roomDetails = "Подробнее о номере"
+        static var booking = "Бронирование"
         
         enum CellTitle {
             static var aboutHotel = "Об отеле"
