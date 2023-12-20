@@ -7,7 +7,7 @@
 
 import UIKit
 
-private enum BookingCellType: String, CaseIterable {
+enum BookingCellType: String, CaseIterable {
     case about
 }
 
@@ -41,7 +41,7 @@ extension BookingViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        1
+        viewModel.getNumberOfItems()
     }
     
     func collectionView(
@@ -52,6 +52,7 @@ extension BookingViewController: UICollectionViewDataSource {
             withReuseIdentifier: BookingCellType.about.rawValue,
             for: indexPath
         ) as? AboutHotelCell
+        cell?.viewModel = viewModel.getRoomCellViewModel()
         return cell ?? UICollectionViewCell()
     }
 }

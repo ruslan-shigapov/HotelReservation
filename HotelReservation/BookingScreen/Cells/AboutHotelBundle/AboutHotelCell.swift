@@ -11,6 +11,12 @@ final class AboutHotelCell: CustomCollectionViewCell {
     
     private let aboutHotelView = AboutHotelView()
     
+    weak var viewModel: AboutHotelCellViewModel! {
+        didSet {
+            
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUI()
