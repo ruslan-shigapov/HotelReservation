@@ -10,8 +10,8 @@ import UIKit
 final class DetailsPeculiarityCell: UICollectionViewCell {
     
     private lazy var detailsButton: UIButton = {
-        let icon = Constants.Images.blueArrowNext
         var configuration = UIButton.Configuration.plain()
+        let icon = Constants.Images.blueArrowNext
         configuration.image = icon
         configuration.imagePlacement = .trailing
         configuration.imagePadding = 10

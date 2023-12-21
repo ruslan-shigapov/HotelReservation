@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AboutHotelCell: CustomCollectionViewCell {
+final class AboutHotelCell: VerticalCollectionViewCell {
     
     private let aboutHotelView = AboutHotelView()
     
@@ -22,7 +22,7 @@ final class AboutHotelCell: CustomCollectionViewCell {
     }
     
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         setupUI()
     }
     
@@ -31,7 +31,7 @@ final class AboutHotelCell: CustomCollectionViewCell {
     }
     
     private func setupUI() {
-        contentView.addSubview(aboutHotelView)
+        addSubview(aboutHotelView)
         aboutHotelView.translatesAutoresizingMaskIntoConstraints = false
         setConstraints()
     }
@@ -39,16 +39,20 @@ final class AboutHotelCell: CustomCollectionViewCell {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             aboutHotelView.topAnchor.constraint(
-                equalTo: contentView.topAnchor
+                equalTo: topAnchor,
+                constant: 16
             ),
             aboutHotelView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor
+                equalTo: leadingAnchor,
+                constant: 16
             ),
             aboutHotelView.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor
+                equalTo: bottomAnchor,
+                constant: -16
             ),
             aboutHotelView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor
+                equalTo: trailingAnchor,
+                constant: -16
             )
         ])
     }

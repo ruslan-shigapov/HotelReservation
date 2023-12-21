@@ -15,6 +15,7 @@ enum HotelCellType: String, CaseIterable {
 
 final class HotelViewController: UIViewController {
     
+    // MARK: Views
     private let verticalCollectionView = VerticalCollectionView()
     private let dividerView = DividerView()
     
@@ -30,12 +31,14 @@ final class HotelViewController: UIViewController {
         return button
     }()
     
+    // MARK: Properties
     private let viewModel = HotelViewModel()
     
     private var storage: Set<AnyCancellable> = []
     
     weak var coordinator: HotelScreenCoordinator?
 
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         verticalCollectionView.dataSource = self
@@ -44,6 +47,7 @@ final class HotelViewController: UIViewController {
         bind()
     }
     
+    // MARK: Methods
     private func registerCells() {
         verticalCollectionView.register(
             MainHotelCell.self,
@@ -81,7 +85,7 @@ final class HotelViewController: UIViewController {
     }
     
     @objc private func confirmButtonWasPressed() {
-        coordinator?.runRoomsCoordinator(with: viewModel.hotelData.name)
+        coordinator?.runRooms(with: viewModel.hotelData.name)
     }
 }
 
@@ -104,9 +108,6 @@ extension HotelViewController: UICollectionViewDataSource {
             withReuseIdentifier: cellType.rawValue,
             for: indexPath
         )
-        cell.contentView.widthAnchor.constraint(
-            equalToConstant: UIScreen.main.bounds.width
-        ).isActive = true
         switch cellType {
         case .main:
             let mainCell = cell as? MainHotelCell

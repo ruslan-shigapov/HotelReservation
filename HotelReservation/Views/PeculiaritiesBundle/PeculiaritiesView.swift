@@ -15,6 +15,7 @@ private enum PeculiarityCellType: String {
 
 final class PeculiaritiesView: UIView {
 
+    // MARK: Views
     private lazy var horizontalCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -25,6 +26,7 @@ final class PeculiaritiesView: UIView {
         return collectionView
     }()
     
+    // MARK: Properties
     private var storage: Set<AnyCancellable> = []
     
     var viewModel: PeculiaritiesViewModel! {
@@ -37,6 +39,7 @@ final class PeculiaritiesView: UIView {
         }
     }
     
+    // MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         horizontalCollectionView.dataSource = self
@@ -48,6 +51,7 @@ final class PeculiaritiesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Setup
     private func registerCells() {
         horizontalCollectionView.register(
             CommonPeculiarityCell.self,
@@ -108,19 +112,19 @@ extension PeculiaritiesView {
         UICollectionViewCompositionalLayout { _, _ in
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .estimated(90),
-                heightDimension: .fractionalHeight(1.0)
+                heightDimension: .absolute(29)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(40)
+                heightDimension: .absolute(39)
             )
             let group = NSCollectionLayoutGroup.horizontal(
                 layoutSize: groupSize,
                 subitems: [item]
             )
             group.contentInsets = .init(
-                top: 8,
+                top: 0,
                 leading: 0,
                 bottom: 0,
                 trailing: 0
@@ -137,7 +141,6 @@ extension PeculiaritiesView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            horizontalCollectionView.heightAnchor.constraint(equalToConstant: 200),
             horizontalCollectionView.topAnchor.constraint(equalTo: topAnchor),
             horizontalCollectionView.leadingAnchor.constraint(
                 equalTo: leadingAnchor
@@ -147,6 +150,9 @@ extension PeculiaritiesView {
             ),
             horizontalCollectionView.trailingAnchor.constraint(
                 equalTo: trailingAnchor
+            ),
+            horizontalCollectionView.heightAnchor.constraint(
+                equalToConstant: 107 // TODO: make auto
             )
         ])
     }

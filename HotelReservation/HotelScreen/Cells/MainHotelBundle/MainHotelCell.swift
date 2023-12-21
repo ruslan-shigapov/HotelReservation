@@ -8,11 +8,21 @@
 import UIKit
 import Combine
 
-final class MainHotelCell: CustomCollectionViewCell {
+final class MainHotelCell: VerticalCollectionViewCell {
     
     private let imageSlider = ImageSliderView()
     private let aboutHotelView = AboutHotelView()
     private let priceView = PriceView()
+    
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [imageSlider, aboutHotelView, priceView]
+        )
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
+    }()
     
     private var storage: Set<AnyCancellable> = []
     
@@ -24,8 +34,8 @@ final class MainHotelCell: CustomCollectionViewCell {
                 address: viewModel.address
             )
             priceView.configure(
-                with: viewModel.minimalPrice,
-                and: viewModel.priceDescription
+                withPrice: viewModel.minimalPrice,
+                description: viewModel.priceDescription
             )
             viewModel.$imageViews
                 .sink { [weak self] in
@@ -45,58 +55,26 @@ final class MainHotelCell: CustomCollectionViewCell {
     }
     
     private func setupUI() {
-        addSubviews()
-        contentView.subviews.forEach(prepareForAutoLayout)
+        addSubview(contentStackView)
         setConstraints()
     }
     
-    private func addSubviews() {
-        contentView.addSubview(imageSlider)
-        contentView.addSubview(aboutHotelView)
-        contentView.addSubview(priceView)
-    }
-    
-    private func prepareForAutoLayout(view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-    }
-}
-
-// MARK: - Layout
-private extension MainHotelCell {
-    
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            imageSlider.heightAnchor.constraint(equalToConstant: 257),
-            imageSlider.topAnchor.constraint(
-                equalTo: contentView.topAnchor,
+            contentStackView.topAnchor.constraint(
+                equalTo: topAnchor,
                 constant: 10
             ),
-            imageSlider.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
+            contentStackView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
                 constant: 16
             ),
-            imageSlider.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
+            contentStackView.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
                 constant: -16
             ),
-
-            aboutHotelView.topAnchor.constraint(
-                equalTo: imageSlider.bottomAnchor
-            ),
-            aboutHotelView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor
-            ),
-            aboutHotelView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor
-            ),
-            
-            priceView.topAnchor.constraint(equalTo: aboutHotelView.bottomAnchor),
-            priceView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16
-            ),
-            priceView.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor,
+            contentStackView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
                 constant: -16
             )
         ])

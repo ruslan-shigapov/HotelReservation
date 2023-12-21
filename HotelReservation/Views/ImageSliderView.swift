@@ -27,14 +27,6 @@ final class ImageSliderView: UIView {
         return activityIndicator
     }()
     
-    private lazy var pageControlView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
-        view.addSubview(pageControl)
-        view.layer.cornerRadius = 5
-        return view
-    }()
-    
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +34,14 @@ final class ImageSliderView: UIView {
         pageControl.currentPageIndicatorTintColor = .label
         pageControl.pageIndicatorTintColor = Constants.Colors.customGray
         return pageControl
+    }()
+    
+    private lazy var pageControlBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.addSubview(pageControl)
+        view.layer.cornerRadius = 5
+        return view
     }()
     
     // MARK: Initialization
@@ -66,7 +66,7 @@ final class ImageSliderView: UIView {
     
     private func addSubviews() {
         addSubview(imageScrollView)
-        addSubview(pageControlView)
+        addSubview(pageControlBackgroundView)
         addSubview(activityIndicator)
     }
     
@@ -94,6 +94,7 @@ final class ImageSliderView: UIView {
     func configure(with pages: [UIImageView]) {
         setupImageScrollView(with: pages)
         pageControl.numberOfPages = pages.count
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.activityIndicator.stopAnimating()
         }
@@ -115,7 +116,11 @@ extension ImageSliderView: UIScrollViewDelegate {
 extension ImageSliderView {
     
     private func setConstraints() {
-        NSLayoutConstraint.activate([
+        let heightAnchor = heightAnchor.constraint(equalToConstant: 257)
+        heightAnchor.priority = .defaultLow
+        heightAnchor.isActive = true
+        
+        NSLayoutConstraint.activate([            
             imageScrollView.topAnchor.constraint(equalTo: topAnchor),
             imageScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageScrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -124,29 +129,29 @@ extension ImageSliderView {
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            pageControlView.centerXAnchor.constraint(
+            pageControlBackgroundView.centerXAnchor.constraint(
                 equalTo: centerXAnchor
             ),
-            pageControlView.bottomAnchor.constraint(
+            pageControlBackgroundView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -8
             ),
             
             pageControl.topAnchor.constraint(
-                equalTo: pageControlView.topAnchor,
-                constant: -2
+                equalTo: pageControlBackgroundView.topAnchor,
+                constant: -5
             ),
             pageControl.leadingAnchor.constraint(
-                equalTo: pageControlView.leadingAnchor,
-                constant: -20
+                equalTo: pageControlBackgroundView.leadingAnchor,
+                constant: -25
             ),
             pageControl.bottomAnchor.constraint(
-                equalTo: pageControlView.bottomAnchor,
-                constant: 2
+                equalTo: pageControlBackgroundView.bottomAnchor,
+                constant: 5
             ),
             pageControl.trailingAnchor.constraint(
-                equalTo: pageControlView.trailingAnchor,
-                constant: 20
+                equalTo: pageControlBackgroundView.trailingAnchor,
+                constant: 25
             )
         ])
     }

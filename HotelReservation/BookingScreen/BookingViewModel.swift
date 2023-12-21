@@ -26,7 +26,15 @@ final class BookingViewModel {
         BookingCellType.allCases.count
     }
     
-    func getRoomCellViewModel() -> AboutHotelCellViewModel {
+    func getCellType(at indexPath: IndexPath) -> BookingCellType {
+        BookingCellType.allCases[indexPath.item]
+    }
+    
+    func getAboutHotelCellViewModel() -> AboutHotelCellViewModel {
         AboutHotelCellViewModel(bookingData: bookingData)
+    }
+    
+    func getBookingDetailsCellViewModel() -> BookingDetailsCellViewModel {
+        BookingDetailsCellViewModel(bookingData: bookingData)
     }
 }

@@ -86,6 +86,13 @@ enum Constants {
         static var mostNecessary = "Самое необходимое"
         static var roomDetails = "Подробнее о номере"
         static var booking = "Бронирование"
+        static var departure = "Вылет из"
+        static var arrivalCountry = "Страна, город"
+        static var dates = "Даты"
+        static var numberOfNights = "Кол-во ночей"
+        static var hotelName = "Отель"
+        static var room = "Номер"
+        static var nutrition = "Питание"
         
         enum CellTitle {
             static var aboutHotel = "Об отеле"

@@ -35,12 +35,18 @@ final class CommonPeculiarityCell: UICollectionViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            peculiarityLabel.topAnchor.constraint(equalTo: topAnchor),
+            peculiarityLabel.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: 5
+            ),
             peculiarityLabel.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 10
             ),
-            peculiarityLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            peculiarityLabel.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -5
+            ),
             peculiarityLabel.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -10

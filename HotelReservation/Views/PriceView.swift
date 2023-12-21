@@ -39,17 +39,8 @@ final class PriceView: UIView {
         setConstraints()
     }
     
-    func configure(with price: String, and description: String) {
-        priceLabel.text = price
-        descriptionLabel.text = description
-    }
-}
- 
-// MARK: - Layout
-extension PriceView {
-    
     private func setConstraints() {
-        NSLayoutConstraint.activate([            
+        NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: topAnchor),
             priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -61,8 +52,12 @@ extension PriceView {
             descriptionLabel.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -3
-            ),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            )
         ])
+    }
+    
+    func configure(withPrice price: String, description: String) {
+        priceLabel.text = price
+        descriptionLabel.text = description
     }
 }

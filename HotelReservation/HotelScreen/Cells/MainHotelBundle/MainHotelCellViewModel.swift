@@ -44,6 +44,7 @@ final class MainHotelCellViewModel {
     
     required init(hotelData: Hotel) {
         self.hotelData = hotelData
+        
         subscription = NetworkManager.shared.imageViewsPublisher(
             by: hotelData.imageUrls
         )

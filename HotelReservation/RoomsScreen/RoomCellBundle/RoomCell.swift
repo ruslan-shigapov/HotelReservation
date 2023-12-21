@@ -8,13 +8,14 @@
 import UIKit
 import Combine
 
-final class RoomCell: CustomCollectionViewCell {
+final class RoomCell: VerticalCollectionViewCell {
     
+    // MARK: Views
     private let imageSlider = ImageSliderView()
     private let cellTitleLabel = CellTitleLabel()
     private let peculiaritiesView = PeculiaritiesView()
     private let priceView = PriceView()
-
+    
     private lazy var confirmButton: UIButton = {
         let button = ConfirmButton(
             title: Constants.Text.ButtonTitle.chooseRoom
@@ -27,6 +28,23 @@ final class RoomCell: CustomCollectionViewCell {
         return button
     }()
     
+    private lazy var contentStackView: UIStackView = {
+        let innerStackView = UIStackView(
+            arrangedSubviews: [imageSlider, cellTitleLabel, peculiaritiesView]
+        )
+        innerStackView.axis = .vertical
+        innerStackView.spacing = 8
+        
+        let stackView = UIStackView(
+            arrangedSubviews: [innerStackView, priceView, confirmButton]
+        )
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
+    }()
+    
+    // MARK: Properties
     private var storage: Set<AnyCancellable> = []
     
     var viewModel: RoomCellViewModel! {
@@ -34,8 +52,8 @@ final class RoomCell: CustomCollectionViewCell {
             cellTitleLabel.configure(with: viewModel.roomName)
             peculiaritiesView.viewModel = viewModel.getPeculiaritiesViewModel()
             priceView.configure(
-                with: viewModel.price,
-                and: viewModel.priceDescription
+                withPrice: viewModel.price,
+                description: viewModel.priceDescription
             )
             viewModel.$imageViews
                 .sink { [weak self] in
@@ -45,6 +63,7 @@ final class RoomCell: CustomCollectionViewCell {
         }
     }
     
+    // MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUI()
@@ -54,22 +73,10 @@ final class RoomCell: CustomCollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Setup
     private func setupUI() {
-        addSubviews()
-        contentView.subviews.forEach(prepareForAutoLayout)
+        addSubview(contentStackView)
         setConstraints()
-    }
-    
-    private func addSubviews() {
-        contentView.addSubview(imageSlider)
-        contentView.addSubview(cellTitleLabel)
-        contentView.addSubview(peculiaritiesView)
-        contentView.addSubview(priceView)
-        contentView.addSubview(confirmButton)
-    }
-    
-    private func prepareForAutoLayout(view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     @objc private func confirmButtonWasPressed() {
@@ -82,65 +89,20 @@ private extension RoomCell {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            imageSlider.heightAnchor.constraint(equalToConstant: 257),
-            imageSlider.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            imageSlider.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
+            contentStackView.topAnchor.constraint(
+                equalTo: topAnchor,
                 constant: 16
             ),
-            imageSlider.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
+            contentStackView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: 16
+            ),
+            contentStackView.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
                 constant: -16
             ),
-            
-            cellTitleLabel.topAnchor.constraint(
-                equalTo: imageSlider.bottomAnchor,
-                constant: 8
-            ),
-            cellTitleLabel.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16
-            ),
-            cellTitleLabel.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
-                constant: -16
-            ),
-            
-            peculiaritiesView.topAnchor.constraint(
-                equalTo: cellTitleLabel.bottomAnchor
-            ),
-            peculiaritiesView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16
-            ),
-            peculiaritiesView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
-                constant: -16
-            ),
-            
-            priceView.topAnchor.constraint(
-                equalTo: peculiaritiesView.bottomAnchor,
-                constant: 16
-            ),
-            priceView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16
-            ),
-
-            confirmButton.topAnchor.constraint(
-                equalTo: priceView.bottomAnchor,
-                constant: 16
-            ),
-            confirmButton.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 16
-            ),
-            confirmButton.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor,
-                constant: -16
-            ),
-            confirmButton.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
+            contentStackView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
                 constant: -16
             )
         ])

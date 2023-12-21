@@ -9,29 +9,7 @@ import UIKit
 
 final class AboutHotelView: UIView {
     
-    private lazy var starImageView: UIImageView = {
-        let imageView = UIImageView(image: Constants.Images.star)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private lazy var ratingLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.Fonts.sf16Medium
-        label.textColor = Constants.Colors.customGold
-        return label
-    }()
-    
-    private lazy var ratingView: UIView = {
-        let view = UIView()
-        view.backgroundColor = Constants.Colors.backgroundGold
-        view.addSubview(starImageView)
-        view.addSubview(ratingLabel)
-        view.layer.cornerRadius = 5
-        return view
-    }()
-    
+    private let ratingView = RatingView()
     private let hotelNameLabel = CellTitleLabel()
     
     private lazy var addressButton: UIButton = {
@@ -40,7 +18,7 @@ final class AboutHotelView: UIView {
         button.titleLabel?.font = Constants.Fonts.sf14Medium
         return button
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -66,74 +44,30 @@ final class AboutHotelView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configure(withRating rating: String, name: String, address: String) {
-        ratingLabel.text = rating
-        hotelNameLabel.text = name
-        addressButton.setTitle(address, for: .normal)
-    }
-}
-
-// MARK: - Layout
-private extension AboutHotelView {
-    
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            ratingView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            ratingView.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 16
-            ),
-            
-            starImageView.centerYAnchor.constraint(
-                equalTo: ratingView.centerYAnchor
-            ),
-            starImageView.leadingAnchor.constraint(
-                equalTo: ratingView.leadingAnchor,
-                constant: 10
-            ),
-
-            ratingLabel.topAnchor.constraint(
-                equalTo: ratingView.topAnchor,
-                constant: 5
-            ),
-            ratingLabel.leadingAnchor.constraint(
-                equalTo: starImageView.trailingAnchor,
-                constant: 2
-            ),
-            ratingLabel.bottomAnchor.constraint(
-                equalTo: ratingView.bottomAnchor,
-                constant: -5
-            ),
-            ratingLabel.trailingAnchor.constraint(
-                equalTo: ratingView.trailingAnchor,
-                constant: -10
-            ),
+            ratingView.topAnchor.constraint(equalTo: topAnchor),
+            ratingView.leadingAnchor.constraint(equalTo: leadingAnchor),
             
             hotelNameLabel.topAnchor.constraint(
                 equalTo: ratingView.bottomAnchor,
                 constant: 8
             ),
-            hotelNameLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 16
-            ),
-            hotelNameLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
-                constant: -16
-            ),
+            hotelNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            hotelNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             addressButton.topAnchor.constraint(
                 equalTo: hotelNameLabel.bottomAnchor,
                 constant: 8
             ),
-            addressButton.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 16
-            ),
-            addressButton.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
-                constant: -16
-            )
+            addressButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            addressButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    func configure(withRating rating: String, name: String, address: String) {
+        ratingView.configure(with: rating)
+        hotelNameLabel.text = name
+        addressButton.setTitle(address, for: .normal)
     }
 }

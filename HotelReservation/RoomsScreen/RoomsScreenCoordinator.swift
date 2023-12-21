@@ -22,7 +22,7 @@ final class RoomsScreenCoordinator: BaseCoordinator {
         navigationController.pushViewController(roomsVC, animated: true)
     }
     
-    func runBookingCoordinator() {
+    func runBooking() {
         let bookingScreenCoordinator = BookingScreenCoordinator(
             navigationController: navigationController
         )

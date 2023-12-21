@@ -10,6 +10,7 @@ import Combine
 
 enum BookingCellType: String, CaseIterable {
     case about
+    case booking
 }
 
 final class BookingViewController: UIViewController {
@@ -27,7 +28,6 @@ final class BookingViewController: UIViewController {
         verticalCollectionView.dataSource = self
         registerCells()
         view.addSubview(verticalCollectionView)
-        
         verticalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         setConstraints()
         bind()
@@ -37,6 +37,10 @@ final class BookingViewController: UIViewController {
         verticalCollectionView.register(
             AboutHotelCell.self,
             forCellWithReuseIdentifier: BookingCellType.about.rawValue
+        )
+        verticalCollectionView.register(
+            BookingDetailsCell.self,
+            forCellWithReuseIdentifier: BookingCellType.booking.rawValue
         )
     }
     
@@ -62,15 +66,22 @@ extension BookingViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: BookingCellType.about.rawValue,
+        let cellType = viewModel.getCellType(at: indexPath)
+        var cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: cellType.rawValue,
             for: indexPath
-        ) as? AboutHotelCell
-        cell?.contentView.widthAnchor.constraint(
-            equalToConstant: UIScreen.main.bounds.width
-        ).isActive = true
-        cell?.viewModel = viewModel.getRoomCellViewModel()
-        return cell ?? UICollectionViewCell()
+        )
+        switch cellType {
+        case .about:
+            let aboutCell = cell as? AboutHotelCell
+            aboutCell?.viewModel = viewModel.getAboutHotelCellViewModel()
+            cell = aboutCell ?? UICollectionViewCell()
+        case .booking:
+            let detailsCell = cell as? BookingDetailsCell
+            detailsCell?.viewModel = viewModel.getBookingDetailsCellViewModel()
+            cell = detailsCell ?? UICollectionViewCell()
+        }
+        return cell
     }
 }
 

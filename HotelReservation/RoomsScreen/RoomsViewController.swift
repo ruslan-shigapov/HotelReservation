@@ -70,13 +70,10 @@ extension RoomsViewController: UICollectionViewDataSource {
             withReuseIdentifier: RoomCellType.common.rawValue,
             for: indexPath
         ) as? RoomCell
-        cell?.contentView.widthAnchor.constraint(
-            equalToConstant: UIScreen.main.bounds.width
-        ).isActive = true
         cell?.viewModel = viewModel.getRoomCellViewModel(at: indexPath)
         cell?.viewModel.confirmButtonTapPublisher
             .sink { [weak self] in
-                self?.coordinator?.runBookingCoordinator()
+                self?.coordinator?.runBooking()
             }
             .store(in: &storage)
         return cell ?? UICollectionViewCell()

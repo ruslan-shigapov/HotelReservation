@@ -10,10 +10,7 @@ import UIKit
 final class InfoButton: UIButton {
     
     private let iconImageView = UIImageView()
-    private let arrowImageView: UIImageView = {
-        let imageView = UIImageView(image: Constants.Images.arrowNext)
-        return imageView
-    }()
+    private let arrowImageView = UIImageView(image: Constants.Images.arrowNext)
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -24,8 +21,9 @@ final class InfoButton: UIButton {
     private lazy var labelsStackView: UIStackView = {
         let label = UILabel()
         label.text = Constants.Text.mostNecessary
-        label.font = Constants.Fonts.sf14Medium
         label.textColor = Constants.Colors.customGray
+        label.font = Constants.Fonts.sf14Medium
+        
         let stackView = UIStackView(arrangedSubviews: [nameLabel, label])
         stackView.axis = .vertical
         return stackView
@@ -57,12 +55,8 @@ final class InfoButton: UIButton {
     private func prepareForAutoLayout(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
     }
-}
-
-// MARK: - Layout
-private extension InfoButton {
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
