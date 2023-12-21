@@ -9,43 +9,66 @@ import UIKit
 
 final class BookingDetailsCell: VerticalCollectionViewCell {
     
-    private let titleLabelsView = DetailsLabelsView(
-        color: Constants.Colors.customGray
-    )
-    
-    private let valueLabelsView = DetailsLabelsView(color: .label)
+    // MARK: Views
+    private let departureLabelsView = BookingDetailsView()
+    private let arrivalCountryLabelsView = BookingDetailsView()
+    private let datesLabelsView = BookingDetailsView()
+    private let numberOfNightsLabelsView = BookingDetailsView()
+    private let hotelNameLabelsView = BookingDetailsView()
+    private let roomLabelsView = BookingDetailsView()
+    private let nutritionLabelsView = BookingDetailsView()
     
     private lazy var contentStackView: UIStackView = {
-        let stackView = UIStackView(
-            arrangedSubviews: [titleLabelsView, valueLabelsView]
-        )       
+        let stackView = UIStackView(arrangedSubviews: [
+            departureLabelsView,
+            arrivalCountryLabelsView,
+            datesLabelsView,
+            numberOfNightsLabelsView,
+            hotelNameLabelsView,
+            roomLabelsView,
+            nutritionLabelsView
+        ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabelsView.configure(
-            withDeparture: Constants.Text.departure,
-            arrivalCountry: Constants.Text.arrivalCountry,
-            dates: Constants.Text.dates,
-            numberOfNights: Constants.Text.numberOfNights,
-            hotelName: Constants.Text.hotelName,
-            room: Constants.Text.room,
-            nutrition: Constants.Text.nutrition
-        )
+        stackView.axis = .vertical
+        stackView.spacing = 16
         return stackView
     }()
     
+    // MARK: Binding
     weak var viewModel: BookingDetailsCellViewModel! {
         didSet {
-            valueLabelsView.configure(
-                withDeparture: viewModel.departure,
-                arrivalCountry: viewModel.arrivalCountry,
-                dates: viewModel.dates,
-                numberOfNights: viewModel.numberOfNights,
-                hotelName: viewModel.hotelName,
-                room: viewModel.room,
-                nutrition: viewModel.nutrition
+            departureLabelsView.configure(
+                withTitle: Constants.Text.departure,
+                value: viewModel.departure
+            )
+            arrivalCountryLabelsView.configure(
+                withTitle: Constants.Text.arrivalCountry,
+                value: viewModel.arrivalCountry
+            )
+            datesLabelsView.configure(
+                withTitle: Constants.Text.dates,
+                value: viewModel.dates
+            )
+            numberOfNightsLabelsView.configure(
+                withTitle: Constants.Text.numberOfNights,
+                value: viewModel.numberOfNights
+            )
+            hotelNameLabelsView.configure(
+                withTitle: Constants.Text.hotelName,
+                value: viewModel.hotelName
+            )
+            roomLabelsView.configure(
+                withTitle: Constants.Text.room,
+                value: viewModel.room
+            )
+            nutritionLabelsView.configure(
+                withTitle: Constants.Text.nutrition,
+                value: viewModel.nutrition
             )
         }
     }
     
+    // MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(contentStackView)
@@ -55,8 +78,10 @@ final class BookingDetailsCell: VerticalCollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setConstraints() {
+}
+// MARK: Layout
+private extension BookingDetailsCell {
+    func setConstraints() {
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(
                 equalTo: topAnchor,

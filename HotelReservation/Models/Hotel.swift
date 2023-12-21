@@ -24,8 +24,8 @@ struct HotelInfo: Decodable {
 extension Hotel {
     
     static let loadingModel = Hotel(
-        name: "Загрузка",
-        adress: "Подождите",
+        name: "",
+        adress: "Загрузка",
         minimalPrice: 0,
         priceForIt: "",
         rating: 0,
