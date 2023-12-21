@@ -22,6 +22,9 @@ enum Constants {
         static var sf22Medium: UIFont {
             UIFont(name: "SFProDisplay-Medium", size: 22)!
         }
+        static var sf14Regular: UIFont {
+            UIFont(name: "SFProDisplay-Regular", size: 14)!
+        }
         static var sf16Regular: UIFont {
             UIFont(name: "SFProDisplay-Regular", size: 16)!
         }
@@ -49,6 +52,12 @@ enum Constants {
         }
         static var backgroundGray: UIColor {
             UIColor(red: 251/255, green: 251/255, blue: 252/255, alpha: 1)
+        }
+        static var placeholderGray: UIColor {
+            UIColor(red: 169/255, green: 171/255, blue: 183/255, alpha: 1)
+        }
+        static var textFieldGray: UIColor {
+            UIColor(red: 246/255, green: 246/255, blue: 249/255, alpha: 1)
         }
     }
     
@@ -93,9 +102,11 @@ enum Constants {
         static var hotelName = "Отель"
         static var room = "Номер"
         static var nutrition = "Питание"
+        static var aboutSafety = "Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту"
         
         enum CellTitle {
             static var aboutHotel = "Об отеле"
+            static var customerInfo = "Информация о покупателе"
         }
         
         enum ButtonTitle {
