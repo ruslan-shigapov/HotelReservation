@@ -13,7 +13,7 @@ final class RoomCell: VerticalCollectionViewCell {
     // MARK: Views
     private let imageSlider = ImageSliderView()
     private let cellTitleLabel = CellTitleLabel()
-    private let peculiaritiesView = PeculiaritiesView()
+    let peculiaritiesView = PeculiaritiesView()
     private let priceView = PriceView()
     
     private lazy var confirmButton: UIButton = {
@@ -66,6 +66,7 @@ final class RoomCell: VerticalCollectionViewCell {
     // MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        peculiaritiesView.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
     }
     

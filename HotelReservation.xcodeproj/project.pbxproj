@@ -53,7 +53,6 @@
 		E4FD0F602B3353EE009DB175 /* BookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD0F5F2B3353EE009DB175 /* BookingViewModel.swift */; };
 		E4FD0F702B335ECB009DB175 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD0F6F2B335ECB009DB175 /* Booking.swift */; };
 		E4FD0F722B335EFA009DB175 /* AboutHotelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD0F712B335EFA009DB175 /* AboutHotelCellViewModel.swift */; };
-		E4FD0F792B343308009DB175 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD0F782B343308009DB175 /* DynamicHeightCollectionView.swift */; };
 		E4FD0F7F2B343952009DB175 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD0F7E2B343952009DB175 /* RatingView.swift */; };
 		E4FD0F842B34650A009DB175 /* InfoButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD0F832B34650A009DB175 /* InfoButtonsView.swift */; };
 		E4FD0F872B347C42009DB175 /* BookingDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD0F862B347C42009DB175 /* BookingDetailsCell.swift */; };
@@ -109,7 +108,6 @@
 		E4FD0F5F2B3353EE009DB175 /* BookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewModel.swift; sourceTree = "<group>"; };
 		E4FD0F6F2B335ECB009DB175 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		E4FD0F712B335EFA009DB175 /* AboutHotelCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHotelCellViewModel.swift; sourceTree = "<group>"; };
-		E4FD0F782B343308009DB175 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		E4FD0F7E2B343952009DB175 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		E4FD0F832B34650A009DB175 /* InfoButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButtonsView.swift; sourceTree = "<group>"; };
 		E4FD0F862B347C42009DB175 /* BookingDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetailsCell.swift; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 		E44701662B308BDA00E66A49 /* PeculiaritiesBundle */ = {
 			isa = PBXGroup;
 			children = (
-				E4FD0F782B343308009DB175 /* DynamicHeightCollectionView.swift */,
 				E447015F2B3058AC00E66A49 /* PeculiaritiesView.swift */,
 				E44701632B3067C600E66A49 /* PeculiaritiesViewModel.swift */,
 				E44701652B3087D500E66A49 /* Cells */,
@@ -472,7 +469,6 @@
 				E4761D312B31BAE7000A5BE8 /* DetailsPeculiarityCell.swift in Sources */,
 				E4FD0F7F2B343952009DB175 /* RatingView.swift in Sources */,
 				E44701622B30641300E66A49 /* CommonPeculiarityCell.swift in Sources */,
-				E4FD0F792B343308009DB175 /* DynamicHeightCollectionView.swift in Sources */,
 				E4AEEDAA2B2B7829004D3A55 /* HotelScreenCoordinator.swift in Sources */,
 				E4650EB72B321E1D00C3FF60 /* VerticalCollectionViewCell.swift in Sources */,
 				E4AEED942B2B7418004D3A55 /* SceneDelegate.swift in Sources */,

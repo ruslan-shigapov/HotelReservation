@@ -54,6 +54,7 @@ final class HotelInfoCell: VerticalCollectionViewCell {
     // MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
+        peculiaritiesView.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
     }
     
@@ -88,7 +89,9 @@ private extension HotelInfoCell {
             contentStackView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -16
-            )
+            ),
+            // TODO: make auto
+            peculiaritiesView.heightAnchor.constraint(equalToConstant: 107)
         ])
     }
 }

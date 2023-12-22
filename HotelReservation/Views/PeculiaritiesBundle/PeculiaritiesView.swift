@@ -150,9 +150,6 @@ extension PeculiaritiesView {
             ),
             horizontalCollectionView.trailingAnchor.constraint(
                 equalTo: trailingAnchor
-            ),
-            horizontalCollectionView.heightAnchor.constraint(
-                equalToConstant: 107 // TODO: make auto
             )
         ])
     }

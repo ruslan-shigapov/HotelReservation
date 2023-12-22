@@ -70,6 +70,10 @@ extension RoomsViewController: UICollectionViewDataSource {
             withReuseIdentifier: RoomCellType.common.rawValue,
             for: indexPath
         ) as? RoomCell
+        // TODO: make auto
+        cell?.peculiaritiesView.heightAnchor.constraint(
+            equalToConstant: indexPath.item == 1 ? 107 : 68
+        ).isActive = true
         cell?.viewModel = viewModel.getRoomCellViewModel(at: indexPath)
         cell?.viewModel.confirmButtonTapPublisher
             .sink { [weak self] in
