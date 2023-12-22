@@ -22,11 +22,17 @@ enum Constants {
         static var sf22Medium: UIFont {
             UIFont(name: "SFProDisplay-Medium", size: 22)!
         }
+        static var sf12Regular: UIFont {
+            UIFont(name: "SFProDisplay-Regular", size: 12)!
+        }
         static var sf14Regular: UIFont {
             UIFont(name: "SFProDisplay-Regular", size: 14)!
         }
         static var sf16Regular: UIFont {
             UIFont(name: "SFProDisplay-Regular", size: 16)!
+        }
+        static var sf17Regular: UIFont {
+            UIFont(name: "SFProDisplay-Regular", size: 17)!
         }
         static var sf30Semibold: UIFont {
             UIFont(name: "SFProDisplay-Semibold", size: 30)!
@@ -113,5 +119,12 @@ enum Constants {
             static var toRoomChoice = "К выбору номера"
             static var chooseRoom = "Выбрать номер"
         }
-    }    
+        
+        enum Placeholder {
+            static var phoneNumber = "Номер телефона"
+            static var email = "Почта"
+            static var firstName = "Имя"
+            static var lastName = "Фамилия"
+        }
+    }
 }

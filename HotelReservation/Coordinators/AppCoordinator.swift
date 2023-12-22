@@ -27,6 +27,7 @@ final class AppCoordinator: BaseCoordinator {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             customView: UIImageView(image: Constants.Images.arrowBack)
         )
+        // TODO: finish customization 
         return navigationController
     }()
     

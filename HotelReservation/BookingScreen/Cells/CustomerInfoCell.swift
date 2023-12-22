@@ -11,8 +11,14 @@ final class CustomerInfoCell: VerticalCollectionViewCell {
     
     private let cellTitleLabel = CellTitleLabel()
     
-    private let phoneNumberTextFieldView = RoundedTextFieldView()
-    private let emailTextFieldView = RoundedTextFieldView()
+    private let phoneNumberTextFieldView = RoundedTextFieldView(
+        placeholder: Constants.Text.Placeholder.phoneNumber,
+        type: .phoneNumber
+    )
+    private let emailTextFieldView = RoundedTextFieldView(
+        placeholder: Constants.Text.Placeholder.email,
+        type: .email
+    )
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
