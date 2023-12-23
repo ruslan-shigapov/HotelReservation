@@ -96,6 +96,9 @@ enum Constants {
         static var blueArrowUp: UIImage {
             UIImage(named: "BlueArrowUp")!
         }
+        static var whitePlus: UIImage {
+            UIImage(named: "WhitePlus")!
+        }
     }
     
     // MARK: Text
@@ -124,6 +127,7 @@ enum Constants {
             static var aboutHotel = "Об отеле"
             static var customerInfo = "Информация о покупателе"
             static var firstTourist = "Первый турист"
+            static var addTourist = "Добавить туриста"
         }
         
         enum ButtonTitle {
