@@ -18,7 +18,7 @@ final class RatingView: UIView {
         return label
     }()
 
-    private lazy var contentStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [starImageView, ratingLabel]
         )
@@ -39,26 +39,26 @@ final class RatingView: UIView {
     
     private func setupUI() {
         backgroundColor = Constants.Colors.backgroundGold
-        addSubview(contentStackView)
+        addSubview(containerStackView)
         layer.cornerRadius = 5
         setConstraints()
     }
 
     private func setConstraints() {
         NSLayoutConstraint.activate([            
-            contentStackView.topAnchor.constraint(
+            containerStackView.topAnchor.constraint(
                 equalTo: topAnchor,
                 constant: 5
             ),
-            contentStackView.leadingAnchor.constraint(
+            containerStackView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 10
             ),
-            contentStackView.bottomAnchor.constraint(
+            containerStackView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -5
             ),
-            contentStackView.trailingAnchor.constraint(
+            containerStackView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -10
             )

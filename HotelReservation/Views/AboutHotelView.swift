@@ -9,8 +9,8 @@ import UIKit
 
 final class AboutHotelView: UIView {
     
-    private let ratingView = RatingView()
-    private let hotelNameLabel = CellTitleLabel()
+    private lazy var ratingView = RatingView()
+    private lazy var hotelNameLabel = CellTitleLabel()
     
     private lazy var addressButton: UIButton = {
         let button = UIButton()

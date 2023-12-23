@@ -17,6 +17,13 @@ final class VerticalCollectionView: UICollectionView {
             frame: frame,
             collectionViewLayout: UICollectionViewFlowLayout()
         )
+        
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .vertical
+            layout.sectionInset = .init(top: 8, left: 0, bottom: 12, right: 0)
+            layout.minimumLineSpacing = 8
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
         setupUI()
     }
     
@@ -26,10 +33,7 @@ final class VerticalCollectionView: UICollectionView {
     
     private func setupUI() {
         backgroundColor = .secondarySystemBackground
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            layout.sectionInset = .init(top: 8, left: 0, bottom: 12, right: 0)
-            layout.scrollDirection = .vertical
-        }
+        showsVerticalScrollIndicator = false
+        allowsMultipleSelection = true
     }
 }

@@ -19,7 +19,6 @@ final class BookingScreenCoordinator: BaseCoordinator {
         let bookingVC = BookingViewController()
         bookingVC.coordinator = self
         bookingVC.title = Constants.Text.booking
-        bookingVC.navigationItem.backButtonTitle = .none
         navigationController.pushViewController(bookingVC, animated: true)
     }
 }

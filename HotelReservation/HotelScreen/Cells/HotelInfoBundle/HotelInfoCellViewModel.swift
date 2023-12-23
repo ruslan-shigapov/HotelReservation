@@ -11,18 +11,19 @@ final class HotelInfoCellViewModel {
     
     private let hotelData: HotelInfo
     
+    @Published
+    var peculiarities: [String] = []
+    
     var description: String {
         hotelData.description
     }
 
     required init(hotelData: HotelInfo) {
         self.hotelData = hotelData
+        self.peculiarities = hotelData.peculiarities
     }
     
-    func getPeculiaritiesViewModel() -> PeculiaritiesViewModel {
-        PeculiaritiesViewModel(
-            peculiarities: hotelData.peculiarities,
-            relation: .toHotel
-        )
+    func getNumberOfItems() -> Int {
+        peculiarities.count
     }
 }

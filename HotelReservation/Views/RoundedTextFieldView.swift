@@ -17,6 +17,7 @@ enum TextFieldType {
 
 final class RoundedTextFieldView: UIView {
     
+    // MARK: Views
     private lazy var roundedTextField: UITextField = {
         let textField = UITextField()
         textField.font = Constants.Fonts.sf16Regular
@@ -41,7 +42,7 @@ final class RoundedTextFieldView: UIView {
         return label
     }()
     
-    private lazy var contentStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [floatingLabel, roundedTextField]
         )
@@ -50,9 +51,11 @@ final class RoundedTextFieldView: UIView {
         return stackView
     }()
     
+    // MARK: Properties 
     private let textFieldType: TextFieldType
     private let _placeholder: String
     
+    // MARK: Initializers 
     init(placeholder: String, type: TextFieldType) {
         self.textFieldType = type
         self._placeholder = placeholder
@@ -63,18 +66,18 @@ final class RoundedTextFieldView: UIView {
             attributes: [ .font: Constants.Fonts.sf17Regular ]
         )
         setupUI()
-        setStandardConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Setup 
     private func setupUI() {
         backgroundColor = Constants.Colors.textFieldGray
-        addSubview(contentStackView)
+        addSubview(containerStackView)
         layer.cornerRadius = 10
-        setStandardConstraints()
+        setConstraints()
     }
     
     @objc private func addFloatingLabel() {
@@ -100,19 +103,19 @@ final class RoundedTextFieldView: UIView {
     }
 }
 
-// MARK: Layout
+// MARK: - Layout
 private extension RoundedTextFieldView {
     
-    func setStandardConstraints() {
+    func setConstraints() {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: 52),
             
-            contentStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            contentStackView.leadingAnchor.constraint(
+            containerStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            containerStackView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16
             ),
-            contentStackView.trailingAnchor.constraint(
+            containerStackView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -16
             )

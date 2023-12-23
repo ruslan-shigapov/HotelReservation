@@ -14,32 +14,36 @@ private enum RoomCellType: String {
 
 final class RoomsViewController: UIViewController {
     
-    private let verticalCollectionView = VerticalCollectionView()
+    // MARK: Views
+    private lazy var verticalCollectionView: UICollectionView = {
+        let collectionView = VerticalCollectionView()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(
+            RoomCell.self,
+            forCellWithReuseIdentifier: RoomCellType.common.rawValue
+        )
+        return collectionView
+    }()
     
+    // MARK: Properties
     private let viewModel = RoomsViewModel()
     
     private var storage: Set<AnyCancellable> = []
     
     weak var coordinator: RoomsScreenCoordinator?
     
+    // MARK: Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        verticalCollectionView.dataSource = self
-        registerCell()
         setupUI()
         bind()
     }
     
-    private func registerCell() {
-        verticalCollectionView.register(
-            RoomCell.self,
-            forCellWithReuseIdentifier: RoomCellType.common.rawValue
-        )
-    }
-    
+    // MARK: Private Methods 
     private func setupUI() {
         view.addSubview(verticalCollectionView)
-        verticalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         setConstraints()
     }
     
@@ -71,7 +75,7 @@ extension RoomsViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? RoomCell
         // TODO: make auto
-        cell?.peculiaritiesView.heightAnchor.constraint(
+        cell?.peculiaritiesCollectionView.heightAnchor.constraint(
             equalToConstant: indexPath.item == 1 ? 107 : 68
         ).isActive = true
         cell?.viewModel = viewModel.getRoomCellViewModel(at: indexPath)
@@ -81,6 +85,19 @@ extension RoomsViewController: UICollectionViewDataSource {
             }
             .store(in: &storage)
         return cell ?? UICollectionViewCell()
+    }
+}
+
+// MARK: - Collection View Delegate Flow Layout
+extension RoomsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout:
+        UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        CGSize(width: collectionView.bounds.width, height: 800)
     }
 }
 

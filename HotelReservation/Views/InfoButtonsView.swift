@@ -9,21 +9,21 @@ import UIKit
 
 final class InfoButtonsView: UIView {
 
-    private let conveniencesButton = InfoButton(
+    private lazy var conveniencesButton = InfoButton(
         name: Constants.Text.conveniences,
         icon: Constants.Images.conveniences
     )
-    private let whatIsIncludedButton = InfoButton(
+    private lazy var whatIsIncludedButton = InfoButton(
         name: Constants.Text.whatIsIncluded,
         icon: Constants.Images.whatIsIncluded
     )
-    private let whatIsNotIncludedButton = InfoButton(
+    private lazy var whatIsNotIncludedButton = InfoButton(
         name: Constants.Text.whatIsNotIncluded,
         icon: Constants.Images.whatIsNotIncluded
     )
 
-    private let firstDividerView = DividerView()
-    private let secondDividerView = DividerView()
+    private lazy var firstDividerView = DividerView()
+    private lazy var secondDividerView = DividerView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,7 +55,7 @@ final class InfoButtonsView: UIView {
     }
 }
 
-// MARK: Layout
+// MARK: - Layout
 private extension InfoButtonsView {
     
     func setConstraints() {

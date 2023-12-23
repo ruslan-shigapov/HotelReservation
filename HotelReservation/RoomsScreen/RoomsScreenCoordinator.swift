@@ -17,8 +17,8 @@ final class RoomsScreenCoordinator: BaseCoordinator {
     
     override func start() {
         let roomsVC = RoomsViewController()
-        roomsVC.title = navigationController.title
         roomsVC.coordinator = self
+        roomsVC.title = navigationController.title
         navigationController.pushViewController(roomsVC, animated: true)
     }
     

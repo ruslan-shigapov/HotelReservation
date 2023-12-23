@@ -19,6 +19,9 @@ final class RoomCellViewModel {
     @Published
     var imageViews: [UIImageView] = []
     
+    @Published
+    var peculiarities: [String] = []
+    
     var roomName: String {
         roomData.name
     }
@@ -38,6 +41,8 @@ final class RoomCellViewModel {
     
     required init(roomData: Room) {
         self.roomData = roomData
+        self.peculiarities = roomData.peculiarities
+        
         subscription = NetworkManager.shared.imageViewsPublisher(
             by: roomData.imageUrls
         )
@@ -45,10 +50,7 @@ final class RoomCellViewModel {
         .assign(to: \.imageViews, on: self)
     }
     
-    func getPeculiaritiesViewModel() -> PeculiaritiesViewModel {
-        PeculiaritiesViewModel(
-            peculiarities: roomData.peculiarities,
-            relation: .toRoom
-        )
+    func getNumberOfItems() -> Int {
+        peculiarities.count + 1
     }
 }

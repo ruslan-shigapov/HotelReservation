@@ -9,13 +9,17 @@ import UIKit
 
 final class CustomerInfoCell: VerticalCollectionViewCell {
     
-    private let cellTitleLabel = CellTitleLabel()
+    private lazy var cellTitleLabel: UILabel = {
+        let label = CellTitleLabel()
+        label.configure(with: Constants.Text.CellTitle.customerInfo)
+        return label
+    }()
     
-    private let phoneNumberTextFieldView = RoundedTextFieldView(
+    private lazy var phoneNumberTextFieldView = RoundedTextFieldView(
         placeholder: Constants.Text.Placeholder.phoneNumber,
         type: .phoneNumber
     )
-    private let emailTextFieldView = RoundedTextFieldView(
+    private lazy var emailTextFieldView = RoundedTextFieldView(
         placeholder: Constants.Text.Placeholder.email,
         type: .email
     )
@@ -29,7 +33,7 @@ final class CustomerInfoCell: VerticalCollectionViewCell {
         return label
     }()
     
-    private lazy var contentStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let innerStackView = UIStackView(arrangedSubviews: [
             phoneNumberTextFieldView,
             emailTextFieldView,
@@ -57,8 +61,7 @@ final class CustomerInfoCell: VerticalCollectionViewCell {
     }
     
     private func setupUI() {
-        cellTitleLabel.configure(with: Constants.Text.CellTitle.customerInfo)
-        addSubview(contentStackView)
+        addSubview(containerStackView)
         setConstraints()
     }
 }
@@ -67,19 +70,19 @@ final class CustomerInfoCell: VerticalCollectionViewCell {
 private extension CustomerInfoCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(
+            containerStackView.topAnchor.constraint(
                 equalTo: topAnchor,
                 constant: 16
             ),
-            contentStackView.leadingAnchor.constraint(
+            containerStackView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16
             ),
-            contentStackView.bottomAnchor.constraint(
+            containerStackView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -16
             ),
-            contentStackView.trailingAnchor.constraint(
+            containerStackView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -16
             )

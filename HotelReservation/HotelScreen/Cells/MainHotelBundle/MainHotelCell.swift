@@ -10,13 +10,14 @@ import Combine
 
 final class MainHotelCell: VerticalCollectionViewCell {
     
-    private let imageSlider = ImageSliderView()
-    private let aboutHotelView = AboutHotelView()
-    private let priceView = PriceView()
+    // MARK: Views
+    private lazy var imageSliderView = ImageSliderView()
+    private lazy var aboutHotelView = AboutHotelView()
+    private lazy var priceView = PriceView()
     
-    private lazy var contentStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [imageSlider, aboutHotelView, priceView]
+            arrangedSubviews: [imageSliderView, aboutHotelView, priceView]
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -24,10 +25,17 @@ final class MainHotelCell: VerticalCollectionViewCell {
         return stackView
     }()
     
+    // MARK: Properties
     private var storage: Set<AnyCancellable> = []
     
     weak var viewModel: MainHotelCellViewModel! {
         didSet {
+            viewModel.$imageViews
+                .sink { [weak self] in
+                    self?.imageSliderView.configure(with: $0)
+                }
+                .store(in: &storage)
+            
             aboutHotelView.configure(
                 withRating: viewModel.rating,
                 name: viewModel.hotelName,
@@ -37,14 +45,10 @@ final class MainHotelCell: VerticalCollectionViewCell {
                 withPrice: viewModel.minimalPrice,
                 description: viewModel.priceDescription
             )
-            viewModel.$imageViews
-                .sink { [weak self] in
-                    self?.imageSlider.configure(with: $0)
-                }
-                .store(in: &storage)
         }
     }
     
+    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUI()
@@ -54,26 +58,27 @@ final class MainHotelCell: VerticalCollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Private Methods
     private func setupUI() {
-        addSubview(contentStackView)
+        addSubview(containerStackView)
         setConstraints()
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(
+            containerStackView.topAnchor.constraint(
                 equalTo: topAnchor,
                 constant: 10
             ),
-            contentStackView.leadingAnchor.constraint(
+            containerStackView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16
             ),
-            contentStackView.bottomAnchor.constraint(
+            containerStackView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -16
             ),
-            contentStackView.trailingAnchor.constraint(
+            containerStackView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -16
             )

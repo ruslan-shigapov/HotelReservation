@@ -44,9 +44,10 @@ final class ImageSliderView: UIView {
         return view
     }()
     
-    // MARK: Initialization
+    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         imageScrollView.delegate = self
         setupUI()
     }
@@ -116,11 +117,8 @@ extension ImageSliderView: UIScrollViewDelegate {
 extension ImageSliderView {
     
     private func setConstraints() {
-        let heightAnchor = heightAnchor.constraint(equalToConstant: 257)
-        heightAnchor.priority = .defaultLow
-        heightAnchor.isActive = true
-        
-        NSLayoutConstraint.activate([            
+        NSLayoutConstraint.activate([    
+            heightAnchor.constraint(equalToConstant: 257),
             imageScrollView.topAnchor.constraint(equalTo: topAnchor),
             imageScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageScrollView.bottomAnchor.constraint(equalTo: bottomAnchor),

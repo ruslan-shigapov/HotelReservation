@@ -25,10 +25,8 @@ class VerticalCollectionViewCell: UICollectionViewCell {
     }
     
     private func setConstraints() {
-        let widthAnchor = widthAnchor.constraint(
-            equalToConstant: UIScreen.main.bounds.width
-        )
-        widthAnchor.priority = .defaultHigh
-        widthAnchor.isActive = true
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+        ])
     }
 }

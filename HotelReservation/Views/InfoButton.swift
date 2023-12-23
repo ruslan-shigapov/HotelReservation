@@ -31,6 +31,7 @@ final class InfoButton: UIButton {
 
     init(name: String, icon: UIImage) {
         super.init(frame: .zero)
+        
         nameLabel.text = name
         iconImageView.image = icon
         setupUI()

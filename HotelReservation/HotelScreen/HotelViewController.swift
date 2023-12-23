@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-enum HotelCellType: String, CaseIterable {
+private enum HotelCellType: String, CaseIterable {
     case main
     case info
 }
@@ -16,8 +16,22 @@ enum HotelCellType: String, CaseIterable {
 final class HotelViewController: UIViewController {
     
     // MARK: Views
-    private let verticalCollectionView = VerticalCollectionView()
-    private let dividerView = DividerView()
+    private lazy var verticalCollectionView: UICollectionView = {
+        let collectionView = VerticalCollectionView()
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(
+            MainHotelCell.self,
+            forCellWithReuseIdentifier: HotelCellType.main.rawValue
+        )
+        collectionView.register(
+            HotelInfoCell.self,
+            forCellWithReuseIdentifier: HotelCellType.info.rawValue
+        )
+        return collectionView
+    }()
+    
+    private lazy var dividerView = DividerView()
     
     private lazy var confirmButton: UIButton = {
         let button = ConfirmButton(
@@ -41,24 +55,11 @@ final class HotelViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        verticalCollectionView.dataSource = self
-        registerCells()
         setupUI()
         bind()
     }
     
-    // MARK: Methods
-    private func registerCells() {
-        verticalCollectionView.register(
-            MainHotelCell.self,
-            forCellWithReuseIdentifier: HotelCellType.main.rawValue
-        )
-        verticalCollectionView.register(
-            HotelInfoCell.self,
-            forCellWithReuseIdentifier: HotelCellType.info.rawValue
-        )
-    }
-    
+    // MARK: Private Methods
     private func setupUI() {
         view.backgroundColor = .systemBackground
         addSubviews()
@@ -96,14 +97,14 @@ extension HotelViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        viewModel.getNumberOfItems()
+        HotelCellType.allCases.count
     }
     
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cellType = viewModel.getCellType(at: indexPath)
+        let cellType = HotelCellType.allCases[indexPath.item]
         var cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: cellType.rawValue,
             for: indexPath
@@ -119,6 +120,19 @@ extension HotelViewController: UICollectionViewDataSource {
             cell = infoCell ?? UICollectionViewCell()
         }
         return cell
+    }
+}
+
+// MARK: - Collection View Delegate Flow Layout
+extension HotelViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout:
+        UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        CGSize(width: collectionView.bounds.width, height: 800)
     }
 }
 

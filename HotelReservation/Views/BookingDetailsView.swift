@@ -9,7 +9,7 @@ import UIKit
 
 final class BookingDetailsView: UIView {
 
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = Constants.Colors.customGray
         return label
@@ -17,7 +17,7 @@ final class BookingDetailsView: UIView {
     
     private let valueLabel = UILabel()
     
-    private lazy var contentStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, valueLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .leading
@@ -35,10 +35,10 @@ final class BookingDetailsView: UIView {
 
     
     private func setupUI() {
-        addSubview(contentStackView)
+        addSubview(containerStackView)
         setConstraints()
         
-        contentStackView.arrangedSubviews.forEach { label in
+        containerStackView.arrangedSubviews.forEach { label in
             if let label = label as? UILabel {
                 label.font = Constants.Fonts.sf16Regular
                 label.numberOfLines = 0
@@ -48,10 +48,12 @@ final class BookingDetailsView: UIView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(equalTo: topAnchor),
-            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerStackView.trailingAnchor.constraint(
+                equalTo: trailingAnchor
+            ),
         ])
     }
     

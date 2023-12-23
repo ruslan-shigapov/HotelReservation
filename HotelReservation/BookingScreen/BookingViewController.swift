@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-enum BookingCellType: String, CaseIterable {
+private enum BookingCellType: String, CaseIterable {
     case about
     case booking
     case customer
@@ -17,8 +17,26 @@ enum BookingCellType: String, CaseIterable {
 final class BookingViewController: UIViewController {
     
     // MARK: Views
-    private let verticalCollectionView = VerticalCollectionView()
-    private let dividerView = DividerView()
+    private lazy var verticalCollectionView: UICollectionView = {
+        let collectionView = VerticalCollectionView()
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(
+            AboutHotelCell.self,
+            forCellWithReuseIdentifier: BookingCellType.about.rawValue
+        )
+        collectionView.register(
+            BookingDetailsCell.self,
+            forCellWithReuseIdentifier: BookingCellType.booking.rawValue
+        )
+        collectionView.register(
+            CustomerInfoCell.self,
+            forCellWithReuseIdentifier: BookingCellType.customer.rawValue
+        )
+        return collectionView
+    }()
+    
+    private lazy var dividerView = DividerView()
 
     private lazy var confirmButton: UIButton = {
         let button = ConfirmButton(
@@ -42,28 +60,11 @@ final class BookingViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        verticalCollectionView.dataSource = self
-        registerCells()
         setupUI()
         bind()
     }
     
-    // MARK: Methods
-    private func registerCells() {
-        verticalCollectionView.register(
-            AboutHotelCell.self,
-            forCellWithReuseIdentifier: BookingCellType.about.rawValue
-        )
-        verticalCollectionView.register(
-            BookingDetailsCell.self,
-            forCellWithReuseIdentifier: BookingCellType.booking.rawValue
-        )
-        verticalCollectionView.register(
-            CustomerInfoCell.self,
-            forCellWithReuseIdentifier: BookingCellType.customer.rawValue
-        )
-    }
-    
+    // MARK: Private Methods
     private func setupUI() {
         view.backgroundColor = .systemBackground
         addSubviews()
@@ -100,14 +101,14 @@ extension BookingViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        viewModel.getNumberOfItems()
+        BookingCellType.allCases.count
     }
     
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cellType = viewModel.getCellType(at: indexPath)
+        let cellType = BookingCellType.allCases[indexPath.item]
         var cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: cellType.rawValue,
             for: indexPath
@@ -125,6 +126,19 @@ extension BookingViewController: UICollectionViewDataSource {
             cell = cell as? CustomerInfoCell ?? UICollectionViewCell()
         }
         return cell
+    }
+}
+
+// MARK: - Collection View Delegate Flow Layout
+extension BookingViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout:
+        UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        CGSize(width: collectionView.bounds.width, height: 800)
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 final class AboutHotelCell: VerticalCollectionViewCell {
     
-    private let aboutHotelView = AboutHotelView()
+    private lazy var aboutHotelView = AboutHotelView()
     
     weak var viewModel: AboutHotelCellViewModel! {
         didSet {
@@ -31,8 +31,8 @@ final class AboutHotelCell: VerticalCollectionViewCell {
     }
     
     private func setupUI() {
-        addSubview(aboutHotelView)
         aboutHotelView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(aboutHotelView)
         setConstraints()
     }
     

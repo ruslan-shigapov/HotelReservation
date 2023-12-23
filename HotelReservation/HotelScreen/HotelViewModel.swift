@@ -22,14 +22,6 @@ final class HotelViewModel {
             .assign(to: \.hotelData, on: self)
     }
     
-    func getNumberOfItems() -> Int {
-        HotelCellType.allCases.count
-    }
-    
-    func getCellType(at indexPath: IndexPath) -> HotelCellType {
-        HotelCellType.allCases[indexPath.item]
-    }
-    
     func getMainHotelCellViewModel() -> MainHotelCellViewModel {
         MainHotelCellViewModel(hotelData: hotelData)
     }
