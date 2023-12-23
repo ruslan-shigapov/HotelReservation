@@ -80,6 +80,7 @@ final class BookingDetailsCell: VerticalCollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 // MARK: Layout
 private extension BookingDetailsCell {
     func setConstraints() {

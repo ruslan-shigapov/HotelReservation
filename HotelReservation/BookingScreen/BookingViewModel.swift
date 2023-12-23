@@ -15,6 +15,9 @@ final class BookingViewModel {
     @Published
     var bookingData = Booking.emptyModel
     
+    @Published
+    var totalPrice = ""
+    
     init() {
         subscription = NetworkManager.shared.bookingDataPublisher()
             .replaceError(with: Booking.emptyModel)
@@ -28,5 +31,9 @@ final class BookingViewModel {
     
     func getBookingDetailsCellViewModel() -> BookingDetailsCellViewModel {
         BookingDetailsCellViewModel(bookingData: bookingData)
+    }
+    
+    func getPriceCellViewModel() -> PriceCellViewModel {
+        PriceCellViewModel(bookingData: bookingData)
     }
 }

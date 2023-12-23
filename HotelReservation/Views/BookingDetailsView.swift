@@ -57,8 +57,22 @@ final class BookingDetailsView: UIView {
         ])
     }
     
-    func configure(withTitle title: String, value: String) {
+    func configure(
+        withTitle title: String, 
+        value: String,
+        isPriceLabels: Bool = false,
+        textColor: UIColor? = nil
+    ) {
         titleLabel.text = title
         valueLabel.text = value
+        
+        if isPriceLabels {
+            valueLabel.textAlignment = .right
+        }
+        
+        if let color = textColor {
+            valueLabel.textColor = color
+            valueLabel.font = Constants.Fonts.sf16Semibold
+        }
     }
 }

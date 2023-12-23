@@ -34,6 +34,9 @@ enum Constants {
         static var sf17Regular: UIFont {
             UIFont(name: "SFProDisplay-Regular", size: 17)!
         }
+        static var sf16Semibold: UIFont {
+            UIFont(name: "SFProDisplay-Semibold", size: 16)!
+        }
         static var sf30Semibold: UIFont {
             UIFont(name: "SFProDisplay-Semibold", size: 30)!
         }
@@ -112,6 +115,10 @@ enum Constants {
         static var room = "Номер"
         static var nutrition = "Питание"
         static var aboutSafety = "Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту"
+        static var tour = "Тур"
+        static var fuelCharge = "Топливный сбор"
+        static var serviceCharge = "Сервисный сбор"
+        static var totalPrice = "К оплате"
         
         enum CellTitle {
             static var aboutHotel = "Об отеле"

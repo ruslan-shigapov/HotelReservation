@@ -37,6 +37,8 @@
 		E48670332B2F640700A45A47 /* HotelInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48670322B2F640700A45A47 /* HotelInfoCellViewModel.swift */; };
 		E4AEB2AD2B37129D00299192 /* FirstTouristCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEB2AC2B37129D00299192 /* FirstTouristCell.swift */; };
 		E4AEB2B12B3723BB00299192 /* OpeningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEB2B02B3723BB00299192 /* OpeningView.swift */; };
+		E4AEB2B52B372F9800299192 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEB2B42B372F9800299192 /* PriceCell.swift */; };
+		E4AEB2B72B37314700299192 /* PriceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEB2B62B37314700299192 /* PriceCellViewModel.swift */; };
 		E4AEED922B2B7418004D3A55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED912B2B7418004D3A55 /* AppDelegate.swift */; };
 		E4AEED942B2B7418004D3A55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */; };
 		E4AEED962B2B7418004D3A55 /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED952B2B7418004D3A55 /* HotelViewController.swift */; };
@@ -91,6 +93,8 @@
 		E48670322B2F640700A45A47 /* HotelInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelInfoCellViewModel.swift; sourceTree = "<group>"; };
 		E4AEB2AC2B37129D00299192 /* FirstTouristCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTouristCell.swift; sourceTree = "<group>"; };
 		E4AEB2B02B3723BB00299192 /* OpeningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningView.swift; sourceTree = "<group>"; };
+		E4AEB2B42B372F9800299192 /* PriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
+		E4AEB2B62B37314700299192 /* PriceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCellViewModel.swift; sourceTree = "<group>"; };
 		E4AEED8E2B2B7418004D3A55 /* HotelReservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotelReservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4AEED912B2B7418004D3A55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +225,15 @@
 			path = RoomBundle;
 			sourceTree = "<group>";
 		};
+		E4AEB2B82B37314B00299192 /* PriceBundle */ = {
+			isa = PBXGroup;
+			children = (
+				E4AEB2B42B372F9800299192 /* PriceCell.swift */,
+				E4AEB2B62B37314700299192 /* PriceCellViewModel.swift */,
+			);
+			path = PriceBundle;
+			sourceTree = "<group>";
+		};
 		E4AEED852B2B7418004D3A55 = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +334,7 @@
 				E4FD0F852B347BF1009DB175 /* BookingDetailsBundle */,
 				E44302FF2B34A7EB00B2E64F /* CustomerInfoCell.swift */,
 				E4AEB2AC2B37129D00299192 /* FirstTouristCell.swift */,
+				E4AEB2B82B37314B00299192 /* PriceBundle */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -447,11 +461,13 @@
 				E4AEED962B2B7418004D3A55 /* HotelViewController.swift in Sources */,
 				E43FD7372B2DA06F00CA85ED /* DividerView.swift in Sources */,
 				E4761D412B31FDE0000A5BE8 /* RoomCellViewModel.swift in Sources */,
+				E4AEB2B52B372F9800299192 /* PriceCell.swift in Sources */,
 				E4AEB2AD2B37129D00299192 /* FirstTouristCell.swift in Sources */,
 				E48670332B2F640700A45A47 /* HotelInfoCellViewModel.swift in Sources */,
 				E44701602B3058AC00E66A49 /* PeculiaritiesCollectionView.swift in Sources */,
 				E4FD0F8B2B34854A009DB175 /* BookingDetailsCellViewModel.swift in Sources */,
 				E4761D382B31D3B8000A5BE8 /* RoomsScreenCoordinator.swift in Sources */,
+				E4AEB2B72B37314700299192 /* PriceCellViewModel.swift in Sources */,
 				E43AA7812B2D0A6900E81F54 /* ImageSliderView.swift in Sources */,
 				E4FD0F602B3353EE009DB175 /* BookingViewModel.swift in Sources */,
 				E40BFF852B2C848D00FE2171 /* Constants.swift in Sources */,
