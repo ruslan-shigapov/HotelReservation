@@ -35,6 +35,8 @@
 		E486702F2B2EF92500A45A47 /* MainHotelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E486702E2B2EF92500A45A47 /* MainHotelCellViewModel.swift */; };
 		E48670312B2F54DE00A45A47 /* HotelInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48670302B2F54DE00A45A47 /* HotelInfoCell.swift */; };
 		E48670332B2F640700A45A47 /* HotelInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48670322B2F640700A45A47 /* HotelInfoCellViewModel.swift */; };
+		E4AEB2AD2B37129D00299192 /* FirstTouristCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEB2AC2B37129D00299192 /* FirstTouristCell.swift */; };
+		E4AEB2B12B3723BB00299192 /* OpeningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEB2B02B3723BB00299192 /* OpeningView.swift */; };
 		E4AEED922B2B7418004D3A55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED912B2B7418004D3A55 /* AppDelegate.swift */; };
 		E4AEED942B2B7418004D3A55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */; };
 		E4AEED962B2B7418004D3A55 /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEED952B2B7418004D3A55 /* HotelViewController.swift */; };
@@ -87,6 +89,8 @@
 		E486702E2B2EF92500A45A47 /* MainHotelCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHotelCellViewModel.swift; sourceTree = "<group>"; };
 		E48670302B2F54DE00A45A47 /* HotelInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelInfoCell.swift; sourceTree = "<group>"; };
 		E48670322B2F640700A45A47 /* HotelInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelInfoCellViewModel.swift; sourceTree = "<group>"; };
+		E4AEB2AC2B37129D00299192 /* FirstTouristCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTouristCell.swift; sourceTree = "<group>"; };
+		E4AEB2B02B3723BB00299192 /* OpeningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningView.swift; sourceTree = "<group>"; };
 		E4AEED8E2B2B7418004D3A55 /* HotelReservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotelReservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4AEED912B2B7418004D3A55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4AEED932B2B7418004D3A55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				E4FD0F832B34650A009DB175 /* InfoButtonsView.swift */,
 				E41B25FF2B34BB82007E1448 /* BookingDetailsView.swift */,
 				E41B26012B34C36F007E1448 /* RoundedTextFieldView.swift */,
+				E4AEB2B02B3723BB00299192 /* OpeningView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				E4FD0F732B335F0B009DB175 /* AboutHotelBundle */,
 				E4FD0F852B347BF1009DB175 /* BookingDetailsBundle */,
 				E44302FF2B34A7EB00B2E64F /* CustomerInfoCell.swift */,
+				E4AEB2AC2B37129D00299192 /* FirstTouristCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -441,6 +447,7 @@
 				E4AEED962B2B7418004D3A55 /* HotelViewController.swift in Sources */,
 				E43FD7372B2DA06F00CA85ED /* DividerView.swift in Sources */,
 				E4761D412B31FDE0000A5BE8 /* RoomCellViewModel.swift in Sources */,
+				E4AEB2AD2B37129D00299192 /* FirstTouristCell.swift in Sources */,
 				E48670332B2F640700A45A47 /* HotelInfoCellViewModel.swift in Sources */,
 				E44701602B3058AC00E66A49 /* PeculiaritiesCollectionView.swift in Sources */,
 				E4FD0F8B2B34854A009DB175 /* BookingDetailsCellViewModel.swift in Sources */,
@@ -460,6 +467,7 @@
 				E4AEEDAA2B2B7829004D3A55 /* HotelScreenCoordinator.swift in Sources */,
 				E4650EB72B321E1D00C3FF60 /* VerticalCollectionViewCell.swift in Sources */,
 				E4AEED942B2B7418004D3A55 /* SceneDelegate.swift in Sources */,
+				E4AEB2B12B3723BB00299192 /* OpeningView.swift in Sources */,
 				E4AEEDA62B2B7716004D3A55 /* BaseCoordinator.swift in Sources */,
 				E4761D352B31D389000A5BE8 /* RoomsViewController.swift in Sources */,
 				E4FD0F842B34650A009DB175 /* InfoButtonsView.swift in Sources */,

@@ -87,10 +87,12 @@ final class RoundedTextFieldView: UIView {
             switch textFieldType {
             case .phoneNumber:
                 roundedTextField.placeholder = "+7 (***) ***-**-**"
-            case .email, .text, .decimal:
+            case .email, .text:
                 roundedTextField.placeholder = ""
             case .date: 
                 roundedTextField.placeholder = "__.__.__"
+            case .decimal:
+                roundedTextField.placeholder = "** *******"
             }
         }
     }

@@ -90,6 +90,9 @@ enum Constants {
         static var arrowBack: UIImage {
             UIImage(named: "ArrowBack")!
         }
+        static var blueArrowUp: UIImage {
+            UIImage(named: "BlueArrowUp")!
+        }
     }
     
     // MARK: Text
@@ -113,6 +116,7 @@ enum Constants {
         enum CellTitle {
             static var aboutHotel = "Об отеле"
             static var customerInfo = "Информация о покупателе"
+            static var firstTourist = "Первый турист"
         }
         
         enum ButtonTitle {
@@ -125,6 +129,10 @@ enum Constants {
             static var email = "Почта"
             static var firstName = "Имя"
             static var lastName = "Фамилия"
+            static var birthDate = "Дата рождения"
+            static var citizenship = "Гражданство"
+            static var passportNumber = "Номер загранпаспорта"
+            static var passportPeriod = "Срок действия загранпаспорта"
         }
     }
 }

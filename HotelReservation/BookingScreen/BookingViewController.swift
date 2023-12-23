@@ -12,6 +12,7 @@ private enum BookingCellType: String, CaseIterable {
     case about
     case booking
     case customer
+    case firstTourist
 }
 
 final class BookingViewController: UIViewController {
@@ -32,6 +33,10 @@ final class BookingViewController: UIViewController {
         collectionView.register(
             CustomerInfoCell.self,
             forCellWithReuseIdentifier: BookingCellType.customer.rawValue
+        )
+        collectionView.register(
+            FirstTouristCell.self,
+            forCellWithReuseIdentifier: BookingCellType.firstTourist.rawValue
         )
         return collectionView
     }()
@@ -124,8 +129,10 @@ extension BookingViewController: UICollectionViewDataSource {
             cell = detailsCell ?? UICollectionViewCell()
         case .customer:
             cell = cell as? CustomerInfoCell ?? UICollectionViewCell()
+        case .firstTourist:
+            cell = cell as? FirstTouristCell ?? UICollectionViewCell()
         }
-        return cell
+        return cell 
     }
 }
 
