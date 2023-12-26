@@ -9,12 +9,7 @@ import UIKit
 import Combine
 
 private enum BookingCellType: String, CaseIterable {
-    case about
-    case booking
-    case customer
-    case tourist
-    case addTourist
-    case price
+    case about, booking, customer, tourist, additional, addTourist, price
 }
 
 final class BookingViewController: UIViewController {
@@ -39,6 +34,10 @@ final class BookingViewController: UIViewController {
         collectionView.register(
             FirstTouristCell.self,
             forCellWithReuseIdentifier: BookingCellType.tourist.rawValue
+        )
+        collectionView.register(
+            AdditionalTouristCell.self,
+            forCellWithReuseIdentifier: BookingCellType.additional.rawValue
         )
         collectionView.register(
             AddTouristCell.self,
@@ -71,7 +70,7 @@ final class BookingViewController: UIViewController {
     private var storage: Set<AnyCancellable> = []
     
     weak var coordinator: BookingScreenCoordinator?
-
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,46 +111,82 @@ final class BookingViewController: UIViewController {
 
 // MARK: - Collection View Data Source
 extension BookingViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        viewModel.getNumberOfSections()
+    }
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        BookingCellType.allCases.count
+        viewModel.getNumberOfItemsIn(section)
     }
     
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cellType = BookingCellType.allCases[indexPath.item]
-        var cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: cellType.rawValue,
-            for: indexPath
-        )
-        switch cellType {
-        case .about:
-            let aboutCell = cell as? AboutHotelCell
+        var cell: VerticalCollectionViewCell?
+        switch (indexPath.section, indexPath.item) {
+        case(0, 0):
+            let aboutCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BookingCellType.about.rawValue,
+                for: indexPath
+            ) as? AboutHotelCell
             aboutCell?.viewModel = viewModel.getAboutHotelCellViewModel()
-            cell = aboutCell ?? UICollectionViewCell()
-        case .booking:
-            let detailsCell = cell as? BookingDetailsCell
+            cell = aboutCell
+        case(0, 1):
+            let detailsCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BookingCellType.booking.rawValue,
+                for: indexPath
+            ) as? BookingDetailsCell
             detailsCell?.viewModel = viewModel.getBookingDetailsCellViewModel()
-            cell = detailsCell ?? UICollectionViewCell()
-        case .customer:
-            cell = cell as? CustomerInfoCell ?? UICollectionViewCell()
-        case .tourist:
-            cell = cell as? FirstTouristCell ?? UICollectionViewCell()
-        case .addTourist:
-            cell = cell as? AddTouristCell ?? UICollectionViewCell()
-        case .price:
-            let priceCell = cell as? PriceCell
+            cell = detailsCell
+        case(0, 2):
+            cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BookingCellType.customer.rawValue,
+                for: indexPath
+            ) as? CustomerInfoCell
+        case(1, 0):
+            cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BookingCellType.tourist.rawValue,
+                for: indexPath
+            ) as? FirstTouristCell
+        case(2, 0):
+            let addTouristCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BookingCellType.addTourist.rawValue,
+                for: indexPath
+            ) as? AddTouristCell
+            addTouristCell?.addButtonTapPublisher
+                .sink { [weak self] in
+                    self?.viewModel.addTouristCell()
+//                    self?.verticalCollectionView.reloadData()
+                }
+                .store(in: &storage)
+            cell = addTouristCell
+        case(2, 1):
+            let priceCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BookingCellType.price.rawValue,
+                for: indexPath
+            ) as? PriceCell
             priceCell?.viewModel = viewModel.getPriceCellViewModel()
+            cell = priceCell
+        default: 
+            let additionalCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BookingCellType.additional.rawValue,
+                for: indexPath
+            ) as? AdditionalTouristCell
+            additionalCell?.configure(
+                with: viewModel.additionalTouristsCellNames[indexPath.item - 1]
+            )
+            cell = additionalCell
+        }
+// TODO: закончить логику
 //            priceCell?.viewModel.calculatedPrice
 //                .assign(to: \.totalPrice, on: viewModel)
 //                .store(in: &storage)
-            cell = priceCell ?? UICollectionViewCell()
-        }
-        return cell
+        return cell ?? UICollectionViewCell()
     }
 }
 
@@ -165,6 +200,16 @@ extension BookingViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         CGSize(width: collectionView.bounds.width, height: 800)
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        let lastSectionIndex = collectionView.numberOfSections - 1
+        let bottomInset: CGFloat = section == lastSectionIndex ? 10 : 0
+        return UIEdgeInsets(top: 8, left: 0, bottom: bottomInset, right: 0)
     }
 }
 

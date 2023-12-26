@@ -20,7 +20,6 @@ final class VerticalCollectionView: UICollectionView {
         
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .vertical
-            layout.sectionInset = .init(top: 8, left: 0, bottom: 12, right: 0)
             layout.minimumLineSpacing = 8
             layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }

@@ -9,8 +9,7 @@ import UIKit
 import Combine
 
 private enum PeculiarityCellType: String {
-    case common
-    case details
+    case common, details
 }
 
 final class RoomCell: VerticalCollectionViewCell {

@@ -1,27 +1,21 @@
 //
-//  FirstTouristCell.swift
+//  AdditionalTouristCell.swift
 //  HotelReservation
 //
-//  Created by Ruslan Shigapov on 23.12.2023.
+//  Created by Ruslan Shigapov on 24.12.2023.
 //
 
 import UIKit
 
-final class FirstTouristCell: VerticalCollectionViewCell {
-        
-    // MARK: Views
-    private lazy var cellTitleLabel: UILabel = {
-        let label = CellTitleLabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.configure(with: Constants.Text.CellTitle.firstTourist)
-        return label
-    }()
+final class AdditionalTouristCell: VerticalCollectionViewCell {
+    
+    private lazy var cellTitleLabel = CellTitleLabel()
     
     private lazy var openButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = Constants.Colors.backgroundBlue
-        button.setImage(Constants.Images.blueArrowUp, for: .normal)
+        button.setImage(Constants.Images.blueArrowDown, for: .normal)
         button.layer.cornerRadius = 6
         button.addTarget(
             self,
@@ -42,7 +36,7 @@ final class FirstTouristCell: VerticalCollectionViewCell {
     
     private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [mainView, openingView]
+            arrangedSubviews: [mainView]
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -50,7 +44,6 @@ final class FirstTouristCell: VerticalCollectionViewCell {
         return stackView
     }()
     
-    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -60,8 +53,8 @@ final class FirstTouristCell: VerticalCollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Private Methods 
     private func setupUI() {
+        cellTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(containerStackView)
         setConstraints()
     }
@@ -69,10 +62,14 @@ final class FirstTouristCell: VerticalCollectionViewCell {
     @objc private func openCloseButtonWasPressed() {
         
     }
+    
+    func configure(with title: String) {
+        cellTitleLabel.configure(with: title + Constants.Text.CellTitle.tourist)
+    }
 }
 
 // MARK: - Layout
-private extension FirstTouristCell {
+private extension AdditionalTouristCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(
@@ -112,3 +109,4 @@ private extension FirstTouristCell {
         ])
     }
 }
+

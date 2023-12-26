@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 final class AddTouristCell: VerticalCollectionViewCell {
+    
+    let addButtonTapPublisher = PassthroughSubject<Void, Never>()
     
     private lazy var cellTitleLabel: UILabel = {
         let label = CellTitleLabel()
@@ -53,7 +56,7 @@ final class AddTouristCell: VerticalCollectionViewCell {
     }
     
     @objc private func addButtonWasPressed() {
-        
+        addButtonTapPublisher.send()
     }
 }
 

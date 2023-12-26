@@ -9,8 +9,7 @@ import UIKit
 import Combine
 
 private enum HotelCellType: String, CaseIterable {
-    case main
-    case info
+    case main, info
 }
 
 final class HotelViewController: UIViewController {
@@ -133,6 +132,14 @@ extension HotelViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         CGSize(width: collectionView.bounds.width, height: 800)
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        UIEdgeInsets(top: 8, left: 0, bottom: 12, right: 0)
     }
 }
 
