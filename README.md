@@ -1,10 +1,5 @@
 # HotelReservation
-
-Платформа: UIKit + Combine
-
-Архитектура: MVVM+C
-
-Верстка: программно (NSLayoutConstraints), Compositional Layout
+Test task by Effective Mobile
 
 <img width="393" alt="Screenshot_1" src="https://github.com/ruslan-shigapov/HotelReservation/assets/104629658/95d0b58a-b0a6-436c-8f7f-88d1ad4754d2">
 
